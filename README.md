@@ -74,7 +74,7 @@ For convenient browsing, `data/dataset_1_bundle.txt` concatenates Dataset 1's 15
 | `node_C/state.log` | semicolon-separated positional (9 fields) | 22 | 1 | 23 |
 | `node_C/fault_recovery.log` | pipe-separated positional (10 fields) | 24 | 1 | 25 |
 
-## 3. Raw formats (one real line each)
+## 3. Raw formats
 
 **operator** (`data/synthetic/node_A/operator.log:8`)
 ```
@@ -106,7 +106,7 @@ Planning header (line 1 of every `planning.log`): `ts,node,event,plan_id,msg_id,
 | INC-002 | INCIDENT | A, C | 10:05:08 - 10:05:16 | Out-of-range speed setpoint rejected by NODE_C (smaller, two-node incident) |
 | INC-003 | NON_INCIDENT_NORMAL_OPERATION | A, B, C | 09:25:10 - 09:25:40 | Routine altitude profile step and plan sync (NORMAL OPERATION - not a fault incident) |
 
-## 5. Walkthrough - INC-001 (main demo incident)
+## 5. Walkthrough - INC-001
 
 Raw records in time order (`event_id` = `EVT-<node>-<family>-<line>`; the line number IS the evidence pointer). Fault records have second resolution, so ordering inside the same second relies on other families.
 
@@ -206,7 +206,7 @@ Visualization mapping: **L1** session origin/dest (operator `SESSION_START`), ph
   - `data/synthetic/node_A/fault_recovery.log:9` is written before `data/synthetic/node_A/fault_recovery.log:10`
 - **Normal activity / unrelated:** INC-003 control group, periodic selftests/heartbeats/refreshes/waypoints, transient self-cleared warnings (`FLT-0901`, `FLT-0420`).
 
-## 8. Parser guidance (Python)
+## 8. Parser guidance
 
 One small parser per family returning `None`/raising on malformed input; the importer counts and records skips with `(file, line, reason, raw)`.
 
@@ -225,7 +225,7 @@ def parse_fault(line):      # split('|') -> 10 fields; event matches ^[A-Z_]+$
 
 Steps: (1) iterate files with `enumerate(f, 1)` so the line number is the evidence pointer; (2) skip the planning header; (3) parse -> normalize (UTC ms) -> `event_id = EVT-<n>-<fam>-<line>`; (4) on failure append to a skipped-record report (file, line, reason, raw); (5) sort by timestamp but keep `source_line` (and state `seq`) for tie-breaks and out-of-order detection; (6) compare your counts with `dataset_manifest.json`. `tools/validate_dataset.py` contains a complete reference implementation of the five parsers.
 
-## 9. Using the ground truth (evaluation only)
+## 9. Using the ground truth
 
 Score your correlation engine by precision/recall on `relationship_ground_truth.json`; check that every pair in `relationships_that_should_not_be_inferred` is NOT presented as causal; check the narrative uses the right uncertainty label per `uncertainty_examples`; check INC-003 is not reported as a fault incident; check missing-event detection against `intentionally_missing_events`.
 
@@ -243,4 +243,3 @@ Score your correlation engine by precision/recall on `relationship_ground_truth.
 ## 11. Validation
 
 `python3 tools/validate_dataset.py` independently re-parses every raw line and checks: manifest counts, line/ID references, shared ids, message flows, missing events really absent, repeats/simultaneity real, malformed lines really unparseable, out-of-order present, normal and unrelated events present, no ground-truth leakage into raw logs, no real-aviation markers.
-
