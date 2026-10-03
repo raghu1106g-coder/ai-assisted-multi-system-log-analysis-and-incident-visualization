@@ -1,0 +1,252 @@
+{
+  "_notice": "SYNTHETIC PROTOTYPE dataset manifest. total_raw_lines = header_lines + expected_valid_records + expected_malformed_records.",
+  "files": [
+    {
+      "path": "data/synthetic/node_A/operator.log",
+      "node": "NODE_A",
+      "log_family": "operator",
+      "format": "bracketed key=value",
+      "total_raw_lines": 21,
+      "header_lines": 0,
+      "expected_valid_records": 20,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        10
+      ],
+      "incident_ids": [
+        "INC-001",
+        "INC-002",
+        "INC-003"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_A/planning.log",
+      "node": "NODE_A",
+      "log_family": "planning",
+      "format": "CSV (12 columns, header on line 1)",
+      "total_raw_lines": 36,
+      "header_lines": 1,
+      "expected_valid_records": 34,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        7
+      ],
+      "incident_ids": [
+        "INC-001",
+        "INC-003"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_A/guidance.log",
+      "node": "NODE_A",
+      "log_family": "guidance",
+      "format": "whitespace-delimited key=value with epoch timestamp",
+      "total_raw_lines": 32,
+      "header_lines": 0,
+      "expected_valid_records": 32,
+      "expected_malformed_records": 0,
+      "malformed_line_numbers": [],
+      "incident_ids": [
+        "INC-002",
+        "INC-003"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_A/state.log",
+      "node": "NODE_A",
+      "log_family": "state",
+      "format": "semicolon-separated positional (9 fields)",
+      "total_raw_lines": 22,
+      "header_lines": 0,
+      "expected_valid_records": 21,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        16
+      ],
+      "incident_ids": [
+        "INC-001",
+        "INC-002",
+        "INC-003"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_A/fault_recovery.log",
+      "node": "NODE_A",
+      "log_family": "fault_recovery",
+      "format": "pipe-separated positional (10 fields)",
+      "total_raw_lines": 21,
+      "header_lines": 0,
+      "expected_valid_records": 21,
+      "expected_malformed_records": 0,
+      "malformed_line_numbers": [],
+      "incident_ids": [
+        "INC-001"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_B/operator.log",
+      "node": "NODE_B",
+      "log_family": "operator",
+      "format": "bracketed key=value",
+      "total_raw_lines": 22,
+      "header_lines": 0,
+      "expected_valid_records": 21,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        4
+      ],
+      "incident_ids": [
+        "INC-001"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_B/planning.log",
+      "node": "NODE_B",
+      "log_family": "planning",
+      "format": "CSV (12 columns, header on line 1)",
+      "total_raw_lines": 21,
+      "header_lines": 1,
+      "expected_valid_records": 20,
+      "expected_malformed_records": 0,
+      "malformed_line_numbers": [],
+      "incident_ids": [
+        "INC-001",
+        "INC-003"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_B/guidance.log",
+      "node": "NODE_B",
+      "log_family": "guidance",
+      "format": "whitespace-delimited key=value with epoch timestamp",
+      "total_raw_lines": 34,
+      "header_lines": 0,
+      "expected_valid_records": 33,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        21
+      ],
+      "incident_ids": [
+        "INC-001"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_B/state.log",
+      "node": "NODE_B",
+      "log_family": "state",
+      "format": "semicolon-separated positional (9 fields)",
+      "total_raw_lines": 20,
+      "header_lines": 0,
+      "expected_valid_records": 20,
+      "expected_malformed_records": 0,
+      "malformed_line_numbers": [],
+      "incident_ids": [
+        "INC-001"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_B/fault_recovery.log",
+      "node": "NODE_B",
+      "log_family": "fault_recovery",
+      "format": "pipe-separated positional (10 fields)",
+      "total_raw_lines": 21,
+      "header_lines": 0,
+      "expected_valid_records": 20,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        5
+      ],
+      "incident_ids": [
+        "INC-001"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_C/operator.log",
+      "node": "NODE_C",
+      "log_family": "operator",
+      "format": "bracketed key=value",
+      "total_raw_lines": 20,
+      "header_lines": 0,
+      "expected_valid_records": 20,
+      "expected_malformed_records": 0,
+      "malformed_line_numbers": [],
+      "incident_ids": []
+    },
+    {
+      "path": "data/synthetic/node_C/planning.log",
+      "node": "NODE_C",
+      "log_family": "planning",
+      "format": "CSV (12 columns, header on line 1)",
+      "total_raw_lines": 24,
+      "header_lines": 1,
+      "expected_valid_records": 22,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        14
+      ],
+      "incident_ids": [
+        "INC-001",
+        "INC-003"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_C/guidance.log",
+      "node": "NODE_C",
+      "log_family": "guidance",
+      "format": "whitespace-delimited key=value with epoch timestamp",
+      "total_raw_lines": 37,
+      "header_lines": 0,
+      "expected_valid_records": 36,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        34
+      ],
+      "incident_ids": [
+        "INC-001",
+        "INC-002",
+        "INC-003"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_C/state.log",
+      "node": "NODE_C",
+      "log_family": "state",
+      "format": "semicolon-separated positional (9 fields)",
+      "total_raw_lines": 23,
+      "header_lines": 0,
+      "expected_valid_records": 22,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        18
+      ],
+      "incident_ids": [
+        "INC-001",
+        "INC-002",
+        "INC-003"
+      ]
+    },
+    {
+      "path": "data/synthetic/node_C/fault_recovery.log",
+      "node": "NODE_C",
+      "log_family": "fault_recovery",
+      "format": "pipe-separated positional (10 fields)",
+      "total_raw_lines": 25,
+      "header_lines": 0,
+      "expected_valid_records": 24,
+      "expected_malformed_records": 1,
+      "malformed_line_numbers": [
+        12
+      ],
+      "incident_ids": [
+        "INC-001",
+        "INC-002"
+      ]
+    }
+  ],
+  "totals": {
+    "files": 15,
+    "total_raw_lines": 379,
+    "expected_valid_records": 366,
+    "expected_malformed_records": 10
+  }
+}

@@ -1,0 +1,427 @@
+# PS3 Synthetic Dataset 1 — bundled raw logs
+# Fictional prototype data; not an official dataset or real operational data.
+# Browse this file; use the individual data/synthetic/node_*/ files for ingestion.
+
+===== BEGIN data/synthetic/node_A/operator.log =====
+[ts=2031-05-12T09:00:10.300Z][node=NODE_A][sev=INFO] op=OP-07 action=SESSION_START origin=ZZ-ALPHA dest=ZZ-BRAVO component=SESSION msg="Operator session opened for simulated session SIM-S01"
+[ts=2031-05-12T09:00:38.187Z][node=NODE_A][sev=INFO] op=OP-07 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display contrast"
+[ts=2031-05-12T09:03:09.053Z][node=NODE_A][sev=INFO] op=OP-07 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display brightness"
+[ts=2031-05-12T09:09:14.500Z][node=NODE_A][sev=INFO] op=OP-07 action=SUBMIT_COMMAND cmd_id=CMD-1001 attempt=1 component=ROUTE_MGR msg="Operator confirmed route leg 2"
+[ts=2031-05-12T09:13:21.851Z][node=NODE_A][sev=INFO] op=OP-07 action=STATUS_QUERY component=SPEED_CTRL msg="Operator queried status of SPEED_CTRL"
+[ts=2031-05-12T09:16:56.761Z][node=NODE_A][sev=INFO] op=OP-07 action=STATUS_QUERY component=COMM_LINK msg="Operator queried status of COMM_LINK"
+[ts=2031-05-12T09:25:10.200Z][node=NODE_A][sev=INFO] op=OP-07 action=SUBMIT_COMMAND cmd_id=CMD-1030 attempt=1 component=ALT_PROFILE msg="Operator requested routine altitude profile step"
+[ts=2031-05-12T09:41:02.120Z][node=NODE_A][sev=INFO] op=OP-07 action=SUBMIT_COMMAND cmd_id=CMD-1042 attempt=1 component=ROUTE_MGR msg="Operator requested alternate route profile ALT-2"
+[ts=2031-05-12T09:41:03.900Z][node=NODE_A][sev=INFO] op=OP-07 action=SUBMIT_COMMAND cmd_id=CMD-1042 attempt=2 component=ROUTE_MGR msg="Operator resubmitted route profile request (no feedback shown)"
+[node=NODE_A][sev=INFO] op=OP-07 action=VIEW_CHANGE component=DISPLAY_SVC msg="Operator opened fault panel"
+[ts=2031-05-12T09:41:30.400Z][node=NODE_A][sev=INFO] op=OP-07 action=ACK_ALERT alert_id=FLT-2207 component=NAV_FILTER msg="Operator acknowledged alert FLT-2207"
+[ts=2031-05-12T09:47:22.300Z][node=NODE_A][sev=INFO] op=OP-07 action=SUBMIT_COMMAND cmd_id=CMD-1012 attempt=1 component=ROUTE_MGR msg="Operator confirmed route leg 5"
+[ts=2031-05-12T10:03:56.626Z][node=NODE_A][sev=INFO] op=OP-07 action=STATUS_QUERY component=SPEED_CTRL msg="Operator queried status of SPEED_CTRL"
+[ts=2031-05-12T10:05:08.300Z][node=NODE_A][sev=INFO] op=OP-07 action=SUBMIT_COMMAND cmd_id=CMD-1018 attempt=1 component=SPEED_CTRL msg="Operator lowered speed limit by 12 percent"
+[ts=2031-05-12T10:05:16.200Z][node=NODE_A][sev=INFO] op=OP-07 action=STATUS_QUERY component=SPEED_CTRL msg="Operator queried status of SPEED_CTRL"
+[ts=2031-05-12T10:07:14.500Z][node=NODE_A][sev=INFO] op=OP-07 action=MAINT_NOTE component=COMM_LINK msg="Operator logged maintenance note 165"
+[ts=2031-05-12T10:07:52.148Z][node=NODE_A][sev=INFO] op=OP-07 action=STATUS_QUERY component=SPEED_CTRL msg="Operator queried status of SPEED_CTRL"
+[ts=2031-05-12T10:14:08.900Z][node=NODE_A][sev=INFO] op=OP-07 action=SUBMIT_COMMAND cmd_id=CMD-1033 attempt=1 component=ROUTE_MGR msg="Operator confirmed descent briefing items"
+[ts=2031-05-12T10:16:44.045Z][node=NODE_A][sev=INFO] op=OP-07 action=STATUS_QUERY component=SENSOR_BUS msg="Operator queried status of SENSOR_BUS"
+[ts=2031-05-12T10:23:01.488Z][node=NODE_A][sev=INFO] op=OP-07 action=STATUS_QUERY component=ROUTE_MGR msg="Operator queried status of ROUTE_MGR"
+[ts=2031-05-12T10:24:26.417Z][node=NODE_A][sev=INFO] op=OP-07 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display contrast"
+===== END data/synthetic/node_A/operator.log =====
+
+===== BEGIN data/synthetic/node_A/planning.log =====
+ts,node,event,plan_id,msg_id,peer,cmd_ref,ack_for,resend_of,component,status,detail
+2031-05-12 09:02:00.728,NODE_A,PLAN_REFRESH,PLN-200,,,,,,PLAN_CACHE,OK,"initial route ZZ-ALPHA->ZZ-BRAVO loaded, 6 legs"
+2031-05-12 09:05:20.152,NODE_A,MESSAGE_SENT,PLN-300,MSG-702,NODE_C,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 09:05:20.377,NODE_A,MESSAGE_SENT,PLN-300,MSG-701,NODE_B,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 09:05:20.889,NODE_A,EXCHANGE_COMPLETE,PLN-300,MSG-702,NODE_C,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:05:21.266,NODE_A,EXCHANGE_COMPLETE,PLN-300,MSG-701,NODE_B,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:15:40.169,NODE_A,MESSAGE_SENT,PLN-301
+2031-05-12 09:15:40.283,NODE_A,MESSAGE_SENT,PLN-301,MSG-704,NODE_C,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 09:15:40.969,NODE_A,EXCHANGE_COMPLETE,PLN-301,MSG-703,NODE_B,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:15:41.123,NODE_A,EXCHANGE_COMPLETE,PLN-301,MSG-704,NODE_C,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:17:00.533,NODE_A,PLAN_REFRESH,PLN-201,,,,,,PLAN_CACHE,OK,"refresh complete, no changes"
+2031-05-12 09:25:30.137,NODE_A,MESSAGE_SENT,PLN-308,MSG-740,NODE_B,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 09:25:30.375,NODE_A,MESSAGE_SENT,PLN-308,MSG-741,NODE_C,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 09:25:30.944,NODE_A,EXCHANGE_COMPLETE,PLN-308,MSG-740,NODE_B,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:25:31.128,NODE_A,EXCHANGE_COMPLETE,PLN-308,MSG-741,NODE_C,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:32:00.857,NODE_A,PLAN_REFRESH,PLN-202,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 09:41:02.600,NODE_A,PLAN_REQUEST,PLN-310,,,CMD-1042,,,ROUTE_MGR,REQUESTED,plan request for alternate profile ALT-2
+2031-05-12 09:41:06.350,NODE_A,MESSAGE_SENT,PLN-310,MSG-771,NODE_B,,,,PLAN_SYNC,SENT,plan PLN-310 distributed to peer
+2031-05-12 09:41:05.900,NODE_A,PLAN_COMPUTED,PLN-310,,,CMD-1042,,,ROUTE_MGR,OK,"6 legs computed, 1 constraint relaxed"
+2031-05-12 09:41:06.360,NODE_A,MESSAGE_SENT,PLN-310,MSG-772,NODE_C,,,,PLAN_SYNC,SENT,plan PLN-310 distributed to peer
+2031-05-12 09:41:07.600,NODE_A,EXCHANGE_COMPLETE,PLN-310,MSG-771,NODE_B,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:41:25.100,NODE_A,MESSAGE_SENT,PLN-310,MSG-779,NODE_C,,,MSG-772,PLAN_SYNC,SENT,plan PLN-310 resent after peer notice
+2031-05-12 09:41:26.100,NODE_A,EXCHANGE_COMPLETE,PLN-310,MSG-779,NODE_C,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:47:00.684,NODE_A,PLAN_REFRESH,PLN-203,,,,,,PLAN_CACHE,OK,"refresh complete, no changes"
+2031-05-12 09:52:10.043,NODE_A,MESSAGE_SENT,PLN-302,MSG-705,NODE_B,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 09:52:10.247,NODE_A,MESSAGE_SENT,PLN-302,MSG-706,NODE_C,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 09:52:10.931,NODE_A,EXCHANGE_COMPLETE,PLN-302,MSG-705,NODE_B,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 09:52:11.025,NODE_A,EXCHANGE_COMPLETE,PLN-302,MSG-706,NODE_C,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 10:02:00.418,NODE_A,PLAN_REFRESH,PLN-204,,,,,,PLAN_CACHE,OK,"refresh complete, no changes"
+2031-05-12 10:15:15.634,NODE_A,MESSAGE_RECEIVED,PLN-307,MSG-716,NODE_C,,,,PLAN_SYNC,RECEIVED,peer status report
+2031-05-12 10:15:15.950,NODE_A,MESSAGE_ACK,PLN-307,,NODE_C,,MSG-716,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 10:17:00.539,NODE_A,PLAN_REFRESH,PLN-205,,,,,,PLAN_CACHE,OK,"refresh complete, no changes"
+2031-05-12 10:20:40.180,NODE_A,MESSAGE_SENT,PLN-303,MSG-709,NODE_B,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 10:20:40.270,NODE_A,MESSAGE_SENT,PLN-303,MSG-710,NODE_C,,,,PLAN_SYNC,SENT,periodic status plan sync
+2031-05-12 10:20:41.021,NODE_A,EXCHANGE_COMPLETE,PLN-303,MSG-709,NODE_B,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 10:20:41.266,NODE_A,EXCHANGE_COMPLETE,PLN-303,MSG-710,NODE_C,,,,PLAN_SYNC,COMPLETE,exchange closed
+===== END data/synthetic/node_A/planning.log =====
+
+===== BEGIN data/synthetic/node_A/guidance.log =====
+1936342990.034 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-001 note=waypoint_1_reached
+1936343100.176 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=1 note=periodic_guidance_status
+1936343260.082 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-002 note=waypoint_2_reached
+1936343540.014 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-003 note=waypoint_3_reached
+1936343700.460 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=2 note=periodic_guidance_status
+1936343810.070 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-004 note=waypoint_4_reached
+1936344030.000 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-005 note=waypoint_5_reached
+1936344300.349 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=3 note=periodic_guidance_status
+1936344311.000 NODE_A GDN evt=SETPOINT_SENT sev=INFO comp=ALT_PROFILE cmd=CMD-1030 sp=SP-039 peer=NODE_C note=setpoint_sent_to_peer
+1936344312.600 NODE_A GDN evt=SETPOINT_COMPLETE sev=INFO comp=ALT_PROFILE cmd=CMD-1030 sp=SP-039 note=setpoint_cycle_complete
+1936344350.080 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-006 note=waypoint_6_reached
+1936344615.088 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-007 note=waypoint_7_reached
+1936344880.010 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-008 note=waypoint_8_reached
+1936344900.119 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=4 note=periodic_guidance_status
+1936345160.013 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-009 note=waypoint_9_reached
+1936345268.500 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-010 note=waypoint_10_reached
+1936345500.189 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=5 note=periodic_guidance_status
+1936345590.026 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-011 note=waypoint_11_reached
+1936345860.073 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-012 note=waypoint_12_reached
+1936346100.109 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=6 note=periodic_guidance_status
+1936346135.021 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-013 note=waypoint_13_reached
+1936346410.028 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-014 note=waypoint_14_reached
+1936346670.054 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-015 note=waypoint_15_reached
+1936346700.533 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=7 note=periodic_guidance_status
+1936346709.200 NODE_A GDN evt=SETPOINT_SENT sev=INFO comp=SPEED_CTRL cmd=CMD-1018 sp=SP-044 peer=NODE_C note=setpoint_sent_to_peer
+1936346960.006 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-016 note=waypoint_16_reached
+1936347230.064 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-017 note=waypoint_17_reached
+1936347300.476 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=8 note=periodic_guidance_status
+1936347505.033 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-018 note=waypoint_18_reached
+1936347780.021 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-019 note=waypoint_19_reached
+1936347900.447 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=9 note=periodic_guidance_status
+1936348060.016 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-020 note=waypoint_20_reached
+===== END data/synthetic/node_A/guidance.log =====
+
+===== BEGIN data/synthetic/node_A/state.log =====
+20310512T090030.457Z;NODE_A;CONDITION_SAMPLE;NAV_ENV;-;-;-;100;alt_band=L0 spd_band=S0 fuel_state=OK link=UP phase=PREFLIGHT
+20310512T090130.154Z;NODE_A;PHASE_CHANGE;FLIGHT_PHASE;PREFLIGHT;CLIMB;-;101;phase transition PREFLIGHT to CLIMB
+20310512T091030.128Z;NODE_A;CONDITION_SAMPLE;NAV_ENV;-;-;-;102;alt_band=L2 spd_band=S2 fuel_state=OK link=UP phase=CLIMB
+20310512T092000.000Z;NODE_A;PHASE_CHANGE;FLIGHT_PHASE;CLIMB;CRUISE;-;103;phase transition CLIMB to CRUISE
+20310512T092030.659Z;NODE_A;CONDITION_SAMPLE;NAV_ENV;-;-;-;104;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T092510.550Z;NODE_A;STATE_CHANGE;ALT_PROFILE;LEVEL;STEPPING;CMD-1030;105;altitude step started
+20310512T092540.300Z;NODE_A;STATE_CHANGE;ALT_PROFILE;STEPPING;LEVEL;CMD-1030;106;altitude step finished
+20310512T093030.643Z;NODE_A;CONDITION_SAMPLE;NAV_ENV;-;-;-;107;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T094030.726Z;NODE_A;CONDITION_SAMPLE;NAV_ENV;-;-;-;108;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T094102.480Z;NODE_A;STATE_CHANGE;ROUTE_MGR;IDLE;REPLANNING;CMD-1042;109;replanning started
+20310512T094107.900Z;NODE_A;STATE_CHANGE;ROUTE_MGR;REPLANNING;ACTIVE;PLN-310;110;new plan active
+20310512T094110.100Z;NODE_A;PEER_STATE;PEER_NODE_B;NOMINAL;DEGRADED;MSG-775;111;peer reported degraded
+20310512T094117.200Z;NODE_A;PEER_STATE;PEER_NODE_C;NOMINAL;DEGRADED;MSG-776;112;peer reported degraded
+20310512T094127.400Z;NODE_A;PEER_STATE;PEER_NODE_C;DEGRADED;NOMINAL;-;113;peer back to nominal
+20310512T094129.200Z;NODE_A;PEER_STATE;PEER_NODE_B;DEGRADED;NOMINAL;-;114;peer back to nominal
+20310512T095030.342Z,NODE_A,CONDITION_SAMPLE,NAV_ENV,-,-,-,115,alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T100030.697Z;NODE_A;CONDITION_SAMPLE;NAV_ENV;-;-;-;116;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T100508.700Z;NODE_A;STATE_CHANGE;SPEED_CTRL;STABLE;ADJUSTING;CMD-1018;117;speed adjustment started
+20310512T101030.364Z;NODE_A;CONDITION_SAMPLE;NAV_ENV;-;-;-;118;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T101200.037Z;NODE_A;PHASE_CHANGE;FLIGHT_PHASE;CRUISE;DESCENT;-;119;phase transition CRUISE to DESCENT
+20310512T102030.833Z;NODE_A;CONDITION_SAMPLE;NAV_ENV;-;-;-;120;alt_band=L3 spd_band=S2 fuel_state=OK link=UP phase=DESCENT
+20310512T102400.131Z;NODE_A;PHASE_CHANGE;FLIGHT_PHASE;DESCENT;APPROACH;-;121;phase transition DESCENT to APPROACH
+===== END data/synthetic/node_A/state.log =====
+
+===== BEGIN data/synthetic/node_A/fault_recovery.log =====
+2031-05-12T09:00:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 1
+2031-05-12T09:06:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 2
+2031-05-12T09:10:33Z|NODE_A|TRANSIENT_WARN|FLT-0901|COMM_LINK_JITTER|COMM_LINK|WARN|-|1|link jitter above threshold, self-cleared
+2031-05-12T09:12:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 3
+2031-05-12T09:18:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 4
+2031-05-12T09:24:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 5
+2031-05-12T09:30:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 6
+2031-05-12T09:36:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 7
+2031-05-12T09:41:11Z|NODE_A|TRANSIENT_WARN|FLT-0901|COMM_LINK_JITTER|COMM_LINK|WARN|-|1|link jitter above threshold, self-cleared
+2031-05-12T09:41:10Z|NODE_A|PEER_FAULT_NOTICE|FLT-2207|NAV_FILTER_DIVERGENCE|PEER_NODE_B|WARN|MSG-775|-|fault notice received from NODE_B
+2031-05-12T09:41:18Z|NODE_A|PEER_FAULT_NOTICE|FLT-2210|PLAN_SYNC_TIMEOUT|PEER_NODE_C|WARN|MSG-776|-|fault notice received from NODE_C
+2031-05-12T09:42:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 8
+2031-05-12T09:48:09Z|NODE_A|TRANSIENT_WARN|FLT-0901|COMM_LINK_JITTER|COMM_LINK|WARN|-|1|link jitter above threshold, self-cleared
+2031-05-12T09:48:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 9
+2031-05-12T09:54:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 10
+2031-05-12T10:00:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 11
+2031-05-12T10:05:11Z|NODE_A|TRANSIENT_WARN|FLT-0901|COMM_LINK_JITTER|COMM_LINK|WARN|-|1|link jitter above threshold, self-cleared
+2031-05-12T10:06:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 12
+2031-05-12T10:12:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 13
+2031-05-12T10:18:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 14
+2031-05-12T10:24:40Z|NODE_A|SELFTEST_PASS|ST-001|SELFTEST|ROUTE_MGR|INFO|-|-|self test passed cycle 15
+===== END data/synthetic/node_A/fault_recovery.log =====
+
+===== BEGIN data/synthetic/node_B/operator.log =====
+[ts=2031-05-12T09:00:12.800Z][node=NODE_B][sev=INFO] op=OP-03 action=SESSION_START component=SESSION msg="Maintenance console session opened"
+[ts=2031-05-12T09:07:25.227Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=SENSOR_BUS msg="Operator queried status of SENSOR_BUS"
+[ts=2031-05-12T09:08:14.447Z][node=NODE_B][sev=INFO] op=OP-03 action=MAINT_NOTE component=SPEED_CTRL msg="Operator logged maintenance note 176"
+[ts=2031-05-12T09:12:44.800Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY cmd_id component=NAV_FILTER msg="Operator quer
+[ts=2031-05-12T09:15:11.980Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=COMM_LINK msg="Operator queried status of COMM_LINK"
+[ts=2031-05-12T09:25:34.600Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=PLAN_SYNC msg="Operator queried status of PLAN_SYNC"
+[ts=2031-05-12T09:32:14.844Z][node=NODE_B][sev=INFO] op=OP-03 action=VIEW_CHANGE component=DISPLAY_SVC msg="Operator switched display to page P6"
+[ts=2031-05-12T09:32:30.051Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=NAV_FILTER msg="Operator queried status of NAV_FILTER"
+[ts=2031-05-12T09:33:25.853Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=SPEED_CTRL msg="Operator queried status of SPEED_CTRL"
+[ts=2031-05-12T09:41:12.500Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=NAV_FILTER msg="Operator queried status of NAV_FILTER"
+[ts=2031-05-12T09:45:35.038Z][node=NODE_B][sev=INFO] op=OP-03 action=VIEW_CHANGE component=DISPLAY_SVC msg="Operator switched display to page P5"
+[ts=2031-05-12T09:47:47.035Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=PLAN_SYNC msg="Operator queried status of PLAN_SYNC"
+[ts=2031-05-12T09:48:56.118Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=SPEED_CTRL msg="Operator queried status of SPEED_CTRL"
+[ts=2031-05-12T09:50:59.026Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=NAV_FILTER msg="Operator queried status of NAV_FILTER"
+[ts=2031-05-12T09:54:10.853Z][node=NODE_B][sev=INFO] op=OP-03 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display scale"
+[ts=2031-05-12T10:01:34.311Z][node=NODE_B][sev=INFO] op=OP-03 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display contrast"
+[ts=2031-05-12T10:03:38.972Z][node=NODE_B][sev=INFO] op=OP-03 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display scale"
+[ts=2031-05-12T10:04:05.247Z][node=NODE_B][sev=INFO] op=OP-03 action=VIEW_CHANGE component=DISPLAY_SVC msg="Operator switched display to page P5"
+[ts=2031-05-12T10:04:57.550Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=SENSOR_BUS msg="Operator queried status of SENSOR_BUS"
+[ts=2031-05-12T10:05:20.400Z][node=NODE_B][sev=INFO] op=OP-03 action=MAINT_NOTE component=SENSOR_BUS msg="Operator logged maintenance note 142"
+[ts=2031-05-12T10:17:10.395Z][node=NODE_B][sev=INFO] op=OP-03 action=MAINT_NOTE component=PLAN_SYNC msg="Operator logged maintenance note 198"
+[ts=2031-05-12T10:18:51.361Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY component=COMM_LINK msg="Operator queried status of COMM_LINK"
+===== END data/synthetic/node_B/operator.log =====
+
+===== BEGIN data/synthetic/node_B/planning.log =====
+ts,node,event,plan_id,msg_id,peer,cmd_ref,ack_for,resend_of,component,status,detail
+2031-05-12 09:02:04.502,NODE_B,PLAN_REFRESH,PLN-200,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 09:05:20.822,NODE_B,MESSAGE_RECEIVED,PLN-300,MSG-701,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 09:05:21.060,NODE_B,MESSAGE_ACK,PLN-300,,NODE_A,,MSG-701,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:15:40.544,NODE_B,MESSAGE_RECEIVED,PLN-301,MSG-703,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 09:15:40.768,NODE_B,MESSAGE_ACK,PLN-301,,NODE_A,,MSG-703,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:17:04.671,NODE_B,PLAN_REFRESH,PLN-201,,,,,,PLAN_CACHE,OK,"refresh complete, no changes"
+2031-05-12 09:25:30.435,NODE_B,MESSAGE_RECEIVED,PLN-308,MSG-740,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 09:25:30.691,NODE_B,MESSAGE_ACK,PLN-308,,NODE_A,,MSG-740,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:32:04.610,NODE_B,PLAN_REFRESH,PLN-202,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 09:41:06.700,NODE_B,MESSAGE_RECEIVED,PLN-310,MSG-771,NODE_A,,,,PLAN_SYNC,RECEIVED,plan PLN-310 received
+2031-05-12 09:41:06.980,NODE_B,MESSAGE_ACK,PLN-310,,NODE_A,,MSG-771,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:47:04.569,NODE_B,PLAN_REFRESH,PLN-203,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 09:52:10.298,NODE_B,MESSAGE_RECEIVED,PLN-302,MSG-705,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 09:52:10.690,NODE_B,MESSAGE_ACK,PLN-302,,NODE_A,,MSG-705,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:58:30.238,NODE_B,MESSAGE_SENT,PLN-306,MSG-715,NODE_C,,,,PLAN_SYNC,SENT,peer status report
+2031-05-12 09:58:31.243,NODE_B,EXCHANGE_COMPLETE,PLN-306,MSG-715,NODE_C,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 10:02:04.564,NODE_B,PLAN_REFRESH,PLN-204,,,,,,PLAN_CACHE,OK,"refresh complete, no changes"
+2031-05-12 10:17:04.846,NODE_B,PLAN_REFRESH,PLN-205,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 10:20:40.573,NODE_B,MESSAGE_RECEIVED,PLN-303,MSG-709,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 10:20:40.764,NODE_B,MESSAGE_ACK,PLN-303,,NODE_A,,MSG-709,,PLAN_SYNC,ACKED,acknowledged
+===== END data/synthetic/node_B/planning.log =====
+
+===== BEGIN data/synthetic/node_B/guidance.log =====
+1936342990.559 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-001 note=waypoint_1_reached
+1936343117.753 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=1 note=periodic_guidance_status
+1936343260.463 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-002 note=waypoint_2_reached
+1936343540.490 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-003 note=waypoint_3_reached
+1936343717.820 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=2 note=periodic_guidance_status
+1936343810.407 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-004 note=waypoint_4_reached
+1936344030.210 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-005 note=waypoint_5_reached
+1936344317.584 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=3 note=periodic_guidance_status
+1936344350.241 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-006 note=waypoint_6_reached
+1936344615.488 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-007 note=waypoint_7_reached
+1936344880.592 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-008 note=waypoint_8_reached
+1936344917.895 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=4 note=periodic_guidance_status
+1936345160.437 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-009 note=waypoint_9_reached
+1936345267.250 NODE_B GDN evt=PROFILE_APPLY sev=INFO comp=NAV_FILTER plan=PLN-310 note=profile_applied_from_received_plan
+1936345268.300 NODE_B GDN evt=GUIDANCE_DEVIATION sev=WARN comp=NAV_FILTER xte=0.82 note=cross_track_error_above_soft_limit
+1936345268.620 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-010 note=waypoint_10_reached
+1936345269.500 NODE_B GDN evt=GUIDANCE_DEVIATION sev=WARN comp=NAV_FILTER xte=2.10 note=cross_track_error_above_soft_limit
+1936345268.900 NODE_B GDN evt=GUIDANCE_DEVIATION sev=WARN comp=NAV_FILTER xte=1.35 note=cross_track_error_above_soft_limit
+1936345282.400 NODE_B GDN evt=FILTER_REINIT sev=INFO comp=NAV_FILTER ref=RCV-55 note=filter_reinitialised
+1936345288.900 NODE_B GDN evt=GUIDANCE_NOMINAL sev=INFO comp=NAV_FILTER note=tracking_restored
+1936X45517.731 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=5 note=periodic_guidance_status
+1936345590.461 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-011 note=waypoint_11_reached
+1936346117.578 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=6 note=periodic_guidance_status
+1936346135.340 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-013 note=waypoint_13_reached
+1936346410.393 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-014 note=waypoint_14_reached
+1936346670.577 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-015 note=waypoint_15_reached
+1936346717.581 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=7 note=periodic_guidance_status
+1936346960.124 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-016 note=waypoint_16_reached
+1936347230.242 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-017 note=waypoint_17_reached
+1936347317.898 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=8 note=periodic_guidance_status
+1936347505.444 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-018 note=waypoint_18_reached
+1936347780.571 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-019 note=waypoint_19_reached
+1936347917.255 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=9 note=periodic_guidance_status
+1936348060.153 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-020 note=waypoint_20_reached
+===== END data/synthetic/node_B/guidance.log =====
+
+===== BEGIN data/synthetic/node_B/state.log =====
+20310512T090031.840Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;100;alt_band=L0 spd_band=S0 fuel_state=OK link=UP phase=PREFLIGHT
+20310512T090130.504Z;NODE_B;PHASE_CHANGE;FLIGHT_PHASE;PREFLIGHT;CLIMB;-;101;phase transition PREFLIGHT to CLIMB
+20310512T091031.074Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;102;alt_band=L2 spd_band=S2 fuel_state=OK link=UP phase=CLIMB
+20310512T091107.400Z;NODE_B;STATE_CHANGE;SENSOR_BUS;NOMINAL;RETRY;-;103;bus retry started
+20310512T091108.900Z;NODE_B;STATE_CHANGE;SENSOR_BUS;RETRY;NOMINAL;-;104;bus retry recovered
+20310512T092000.353Z;NODE_B;PHASE_CHANGE;FLIGHT_PHASE;CLIMB;CRUISE;-;105;phase transition CLIMB to CRUISE
+20310512T092031.660Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;106;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T093031.327Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;107;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T094031.495Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;108;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T094108.900Z;NODE_B;STATE_CHANGE;NAV_FILTER;NOMINAL;DEGRADED;-;109;filter degraded
+20310512T094121.200Z;NODE_B;STATE_CHANGE;NAV_FILTER;DEGRADED;RECOVERING;RCV-55;110;filter recovering
+20310512T094128.600Z;NODE_B;STATE_CHANGE;NAV_FILTER;RECOVERING;NOMINAL;RCV-55;111;filter nominal
+20310512T095031.231Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;112;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T095845.100Z;NODE_B;STATE_CHANGE;SENSOR_BUS;NOMINAL;RETRY;-;113;bus retry started
+20310512T095846.300Z;NODE_B;STATE_CHANGE;SENSOR_BUS;RETRY;NOMINAL;-;114;bus retry recovered
+20310512T100031.315Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;115;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T101031.112Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;116;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T101200.370Z;NODE_B;PHASE_CHANGE;FLIGHT_PHASE;CRUISE;DESCENT;-;117;phase transition CRUISE to DESCENT
+20310512T102031.494Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;118;alt_band=L3 spd_band=S2 fuel_state=OK link=UP phase=DESCENT
+20310512T102400.427Z;NODE_B;PHASE_CHANGE;FLIGHT_PHASE;DESCENT;APPROACH;-;119;phase transition DESCENT to APPROACH
+===== END data/synthetic/node_B/state.log =====
+
+===== BEGIN data/synthetic/node_B/fault_recovery.log =====
+2031-05-12T09:00:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 1
+2031-05-12T09:06:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 2
+2031-05-12T09:12:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 3
+2031-05-12T09:18:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 4
+2031-05-12T09:24:47Z;NODE_B;SELFTEST_PASS;ST-001;SELFTEST;NAV_FILTER;INFO;-;-;self test passed cycle 5
+2031-05-12T09:30:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 6
+2031-05-12T09:36:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 7
+2031-05-12T09:37:21Z|NODE_B|TRANSIENT_WARN|FLT-0420|SENSOR_BUS_RETRY|SENSOR_BUS|WARN|-|1|bus retry succeeded
+2031-05-12T09:41:09Z|NODE_B|FAULT_RAISED|FLT-2207|NAV_FILTER_DIVERGENCE|NAV_FILTER|ERROR|-|-|residual above divergence limit
+2031-05-12T09:41:09Z|NODE_B|FAULT_NOTICE_SENT|FLT-2207|NAV_FILTER_DIVERGENCE|NAV_FILTER|INFO|MSG-775|-|fault notice sent to NODE_A
+2031-05-12T09:41:21Z|NODE_B|RECOVERY_STARTED|RCV-55|FILTER_REINIT|NAV_FILTER|INFO|FLT-2207|-|filter reinit scheduled
+2031-05-12T09:41:29Z|NODE_B|FAULT_CLEARED|FLT-2207|NAV_FILTER_DIVERGENCE|NAV_FILTER|INFO|RCV-55|20|filter divergence cleared
+2031-05-12T09:42:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 8
+2031-05-12T09:48:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 9
+2031-05-12T09:54:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 10
+2031-05-12T10:00:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 11
+2031-05-12T10:06:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 12
+2031-05-12T10:12:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 13
+2031-05-12T10:15:44Z|NODE_B|TRANSIENT_WARN|FLT-0420|SENSOR_BUS_RETRY|SENSOR_BUS|WARN|-|1|bus retry succeeded
+2031-05-12T10:18:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 14
+2031-05-12T10:24:47Z|NODE_B|SELFTEST_PASS|ST-001|SELFTEST|NAV_FILTER|INFO|-|-|self test passed cycle 15
+===== END data/synthetic/node_B/fault_recovery.log =====
+
+===== BEGIN data/synthetic/node_C/operator.log =====
+[ts=2031-05-12T09:00:15.100Z][node=NODE_C][sev=INFO] op=OP-05 action=SESSION_START component=SESSION msg="Monitor console session opened"
+[ts=2031-05-12T09:00:28.701Z][node=NODE_C][sev=INFO] op=OP-05 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display contrast"
+[ts=2031-05-12T09:02:57.238Z][node=NODE_C][sev=INFO] op=OP-05 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display brightness"
+[ts=2031-05-12T09:03:11.111Z][node=NODE_C][sev=INFO] op=OP-05 action=STATUS_QUERY component=NAV_FILTER msg="Operator queried status of NAV_FILTER"
+[ts=2031-05-12T09:27:22.907Z][node=NODE_C][sev=INFO] op=OP-05 action=MAINT_NOTE component=ROUTE_MGR msg="Operator logged maintenance note 169"
+[ts=2031-05-12T09:28:21.208Z][node=NODE_C][sev=INFO] op=OP-05 action=STATUS_QUERY component=SPEED_CTRL msg="Operator queried status of SPEED_CTRL"
+[ts=2031-05-12T09:32:19.310Z][node=NODE_C][sev=INFO] op=OP-05 action=VIEW_CHANGE component=DISPLAY_SVC msg="Operator switched display to page P5"
+[ts=2031-05-12T09:36:29.966Z][node=NODE_C][sev=INFO] op=OP-05 action=MAINT_NOTE component=PLAN_SYNC msg="Operator logged maintenance note 160"
+[ts=2031-05-12T09:41:08.000Z][node=NODE_C][sev=INFO] op=OP-05 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display brightness"
+[ts=2031-05-12T09:44:24.969Z][node=NODE_C][sev=INFO] op=OP-05 action=STATUS_QUERY component=ROUTE_MGR msg="Operator queried status of ROUTE_MGR"
+[ts=2031-05-12T09:47:07.393Z][node=NODE_C][sev=INFO] op=OP-05 action=MAINT_NOTE component=ROUTE_MGR msg="Operator logged maintenance note 134"
+[ts=2031-05-12T09:57:39.377Z][node=NODE_C][sev=INFO] op=OP-05 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display contrast"
+[ts=2031-05-12T10:02:25.464Z][node=NODE_C][sev=INFO] op=OP-05 action=STATUS_QUERY component=COMM_LINK msg="Operator queried status of COMM_LINK"
+[ts=2031-05-12T10:09:17.493Z][node=NODE_C][sev=INFO] op=OP-05 action=MAINT_NOTE component=SPEED_CTRL msg="Operator logged maintenance note 103"
+[ts=2031-05-12T10:12:29.458Z][node=NODE_C][sev=INFO] op=OP-05 action=STATUS_QUERY component=ROUTE_MGR msg="Operator queried status of ROUTE_MGR"
+[ts=2031-05-12T10:16:45.426Z][node=NODE_C][sev=INFO] op=OP-05 action=STATUS_QUERY component=NAV_FILTER msg="Operator queried status of NAV_FILTER"
+[ts=2031-05-12T10:19:13.183Z][node=NODE_C][sev=INFO] op=OP-05 action=VIEW_CHANGE component=DISPLAY_SVC msg="Operator switched display to page P4"
+[ts=2031-05-12T10:19:50.238Z][node=NODE_C][sev=INFO] op=OP-05 action=VIEW_CHANGE component=DISPLAY_SVC msg="Operator switched display to page P2"
+[ts=2031-05-12T10:20:10.757Z][node=NODE_C][sev=INFO] op=OP-05 action=ADJUST_DISPLAY component=DISPLAY_SVC msg="Operator changed display brightness"
+[ts=2031-05-12T10:24:47.682Z][node=NODE_C][sev=INFO] op=OP-05 action=STATUS_QUERY component=SENSOR_BUS msg="Operator queried status of SENSOR_BUS"
+===== END data/synthetic/node_C/operator.log =====
+
+===== BEGIN data/synthetic/node_C/planning.log =====
+ts,node,event,plan_id,msg_id,peer,cmd_ref,ack_for,resend_of,component,status,detail
+2031-05-12 09:02:09.701,NODE_C,PLAN_REFRESH,PLN-200,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 09:05:20.411,NODE_C,MESSAGE_RECEIVED,PLN-300,MSG-702,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 09:05:20.720,NODE_C,MESSAGE_ACK,PLN-300,,NODE_A,,MSG-702,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:15:40.549,NODE_C,MESSAGE_RECEIVED,PLN-301,MSG-704,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 09:15:40.899,NODE_C,MESSAGE_ACK,PLN-301,,NODE_A,,MSG-704,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:17:09.581,NODE_C,PLAN_REFRESH,PLN-201,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 09:25:30.697,NODE_C,MESSAGE_RECEIVED,PLN-308,MSG-741,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 09:25:30.877,NODE_C,MESSAGE_ACK,PLN-308,,NODE_A,,MSG-741,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:32:09.335,NODE_C,PLAN_REFRESH,PLN-202,,,,,,PLAN_CACHE,OK,"refresh complete, no changes"
+2031-05-12 09:41:06.710,NODE_C,MESSAGE_RECEIVED,PLN-310,MSG-772,NODE_A,,,,PLAN_SYNC,RECEIVED,plan PLN-310 received
+2031-05-12 09:41:25.500,NODE_C,MESSAGE_RECEIVED,PLN-310,MSG-779,NODE_A,,,MSG-772,PLAN_SYNC,RECEIVED,plan PLN-310 received (resend)
+2031-05-12 09:41:25.800,NODE_C,MESSAGE_ACK,PLN-310,,NODE_A,,MSG-779,,PLAN_SYNC,ACKED,acknowledged
+,NODE_C,PLAN_REFRESH,PLN-203,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 09:52:10.510,NODE_C,MESSAGE_RECEIVED,PLN-302,MSG-706,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 09:52:10.803,NODE_C,MESSAGE_ACK,PLN-302,,NODE_A,,MSG-706,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 09:58:30.643,NODE_C,MESSAGE_RECEIVED,PLN-306,MSG-715,NODE_B,,,,PLAN_SYNC,RECEIVED,peer status report
+2031-05-12 09:58:30.976,NODE_C,MESSAGE_ACK,PLN-306,,NODE_B,,MSG-715,,PLAN_SYNC,ACKED,acknowledged
+2031-05-12 10:02:09.261,NODE_C,PLAN_REFRESH,PLN-204,,,,,,PLAN_CACHE,OK,periodic plan cache refresh
+2031-05-12 10:15:15.270,NODE_C,MESSAGE_SENT,PLN-307,MSG-716,NODE_A,,,,PLAN_SYNC,SENT,peer status report
+2031-05-12 10:15:16.249,NODE_C,EXCHANGE_COMPLETE,PLN-307,MSG-716,NODE_A,,,,PLAN_SYNC,COMPLETE,exchange closed
+2031-05-12 10:17:09.475,NODE_C,PLAN_REFRESH,PLN-205,,,,,,PLAN_CACHE,OK,"refresh complete, no changes"
+2031-05-12 10:20:40.644,NODE_C,MESSAGE_RECEIVED,PLN-303,MSG-710,NODE_A,,,,PLAN_SYNC,RECEIVED,periodic status plan sync
+2031-05-12 10:20:40.977,NODE_C,MESSAGE_ACK,PLN-303,,NODE_A,,MSG-710,,PLAN_SYNC,ACKED,acknowledged
+===== END data/synthetic/node_C/planning.log =====
+
+===== BEGIN data/synthetic/node_C/guidance.log =====
+1936342990.862 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-001 note=waypoint_1_reached
+1936343134.211 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=1 note=periodic_guidance_status
+1936343260.314 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-002 note=waypoint_2_reached
+1936343540.846 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-003 note=waypoint_3_reached
+1936343734.570 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=2 note=periodic_guidance_status
+1936343810.624 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-004 note=waypoint_4_reached
+1936344030.000 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-005 note=waypoint_5_reached
+1936344311.240 NODE_C GDN evt=SETPOINT_RECEIVED sev=INFO comp=ALT_PROFILE cmd=CMD-1030 sp=SP-039 peer=NODE_A note=setpoint_received
+1936344311.500 NODE_C GDN evt=SETPOINT_ACK sev=INFO comp=ALT_PROFILE ack_for=SP-039 peer=NODE_A note=setpoint_acknowledged
+1936344312.300 NODE_C GDN evt=SETPOINT_APPLIED sev=INFO comp=ALT_PROFILE sp=SP-039 note=setpoint_applied
+1936344334.520 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=3 note=periodic_guidance_status
+1936344350.447 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-006 note=waypoint_6_reached
+1936344615.156 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-007 note=waypoint_7_reached
+1936344880.867 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-008 note=waypoint_8_reached
+1936344934.821 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=4 note=periodic_guidance_status
+1936345160.624 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-009 note=waypoint_9_reached
+1936345267.250 NODE_C GDN evt=PROFILE_APPLY sev=INFO comp=NAV_FILTER plan=PLN-310 note=profile_applied_from_received_plan
+1936345268.710 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-010 note=waypoint_10_reached
+1936345276.500 NODE_C GDN evt=PLAN_HOLD sev=WARN comp=PLAN_SYNC note=holding_previous_plan
+1936345286.800 NODE_C GDN evt=PLAN_RESUME sev=INFO comp=PLAN_SYNC plan=PLN-310 ref=MSG-779 note=resuming_with_resent_plan
+1936345534.226 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=5 note=periodic_guidance_status
+1936345590.675 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-011 note=waypoint_11_reached
+1936345860.845 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-012 note=waypoint_12_reached
+1936346134.128 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=6 note=periodic_guidance_status
+1936346135.539 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-013 note=waypoint_13_reached
+1936346410.381 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-014 note=waypoint_14_reached
+1936346670.840 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-015 note=waypoint_15_reached
+1936346709.450 NODE_C GDN evt=SETPOINT_RECEIVED sev=INFO comp=SPEED_CTRL cmd=CMD-1018 sp=SP-044 peer=NODE_A note=setpoint_received
+1936346712.800 NODE_C GDN evt=SETPOINT_REJECTED sev=WARN comp=SPEED_CTRL cmd=CMD-1018 sp=SP-044 ref=FLT-1304 note=setpoint_rejected
+1936346734.869 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=7 note=periodic_guidance_status
+1936346960.640 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-016 note=waypoint_16_reached
+1936347230.661 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-017 note=waypoint_17_reached
+1936347334.394 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=8 note=periodic_guidance_status
+1936347505.775 NODE_C GDN evt=WAYPOINT_
+1936347780.618 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-019 note=waypoint_19_reached
+1936347934.752 NODE_C GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=9 note=periodic_guidance_status
+1936348060.819 NODE_C GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-020 note=waypoint_20_reached
+===== END data/synthetic/node_C/guidance.log =====
+
+===== BEGIN data/synthetic/node_C/state.log =====
+20310512T090032.057Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;100;alt_band=L0 spd_band=S0 fuel_state=OK link=UP phase=PREFLIGHT
+20310512T090130.301Z;NODE_C;PHASE_CHANGE;FLIGHT_PHASE;PREFLIGHT;CLIMB;-;101;phase transition PREFLIGHT to CLIMB
+20310512T091032.437Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;102;alt_band=L2 spd_band=S2 fuel_state=OK link=UP phase=CLIMB
+20310512T091912.600Z;NODE_C;STATE_CHANGE;SENSOR_BUS;NOMINAL;RETRY;-;103;bus retry started
+20310512T091913.900Z;NODE_C;STATE_CHANGE;SENSOR_BUS;RETRY;NOMINAL;-;104;bus retry recovered
+20310512T092000.000Z;NODE_C;PHASE_CHANGE;FLIGHT_PHASE;CLIMB;CRUISE;-;105;phase transition CLIMB to CRUISE
+20310512T092032.702Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;106;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T092512.350Z;NODE_C;STATE_CHANGE;ALT_PROFILE;LEVEL;STEPPING;SP-039;107;altitude step started
+20310512T092540.350Z;NODE_C;STATE_CHANGE;ALT_PROFILE;STEPPING;LEVEL;SP-039;108;altitude step finished
+20310512T093032.676Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;109;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T094032.034Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;110;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T094126.300Z;NODE_C;STATE_CHANGE;PLAN_SYNC;TIMEOUT;SYNCED;MSG-779;112;sync restored
+20310512T094116.100Z;NODE_C;STATE_CHANGE;PLAN_SYNC;SYNCED;TIMEOUT;MSG-772;111;sync timed out
+20310512T095032.026Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;113;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T100032.755Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;114;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T100509.800Z;NODE_C;STATE_CHANGE;SPEED_CTRL;STABLE;ADJUSTING;SP-044;115;speed adjustment started
+20310512T100512.600Z;NODE_C;STATE_CHANGE;SPEED_CTRL;ADJUSTING;STABLE;RCV-61;116;reverted to previous setpoint
+20310512T100830.000Z;NODE_C;STATE_CHANGE;SENSOR_BUS;NOMINAL
+20310512T100831.200Z;NODE_C;STATE_CHANGE;SENSOR_BUS;RETRY;NOMINAL;-;118;bus retry recovered
+20310512T101032.530Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;119;alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE
+20310512T101200.180Z;NODE_C;PHASE_CHANGE;FLIGHT_PHASE;CRUISE;DESCENT;-;120;phase transition CRUISE to DESCENT
+20310512T102032.106Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;121;alt_band=L3 spd_band=S2 fuel_state=OK link=UP phase=DESCENT
+20310512T102400.091Z;NODE_C;PHASE_CHANGE;FLIGHT_PHASE;DESCENT;APPROACH;-;122;phase transition DESCENT to APPROACH
+===== END data/synthetic/node_C/state.log =====
+
+===== BEGIN data/synthetic/node_C/fault_recovery.log =====
+2031-05-12T09:00:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 1
+2031-05-12T09:06:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 2
+2031-05-12T09:12:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 3
+2031-05-12T09:18:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 4
+2031-05-12T09:24:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 5
+2031-05-12T09:25:55Z|NODE_C|TRANSIENT_WARN|FLT-0420|SENSOR_BUS_RETRY|SENSOR_BUS|WARN|-|1|bus retry succeeded
+2031-05-12T09:30:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 6
+2031-05-12T09:36:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 7
+2031-05-12T09:41:16Z|NODE_C|FAULT_RAISED|FLT-2210|PLAN_SYNC_TIMEOUT|PLAN_SYNC|ERROR|MSG-772|-|sync timer expired (10s) for MSG-772
+2031-05-12T09:41:17Z|NODE_C|FAULT_NOTICE_SENT|FLT-2210|PLAN_SYNC_TIMEOUT|PLAN_SYNC|INFO|MSG-776|-|fault notice sent to NODE_A
+2031-05-12T09:41:19Z|NODE_C|FAULT_RAISED|FLT-2210|PLAN_SYNC_TIMEOUT|PLAN_SYNC|ERROR|MSG-772|-|sync timer expired again (repeat 2) for MSG-772
+2031-05-12T09:41:22Z|NODE_C|FAUL�_RA�SED|FLT-2210|PLAN_SYNC_TIMEOUT|PLAN_SYNC|ERROR|MSG-772|-|sync timer expired again (repeat 3) for MSG-772
+2031-05-12T09:41:24Z|NODE_C|RECOVERY_STARTED|RCV-56|REQUEST_PLAN_RESEND|PLAN_SYNC|INFO|FLT-2210|-|request plan resend
+2031-05-12T09:41:27Z|NODE_C|FAULT_CLEARED|FLT-2210|PLAN_SYNC_TIMEOUT|PLAN_SYNC|INFO|RCV-56|11|sync restored
+2031-05-12T09:42:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 8
+2031-05-12T09:48:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 9
+2031-05-12T09:54:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 10
+2031-05-12T10:00:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 11
+2031-05-12T10:05:11Z|NODE_C|FAULT_RAISED|FLT-1304|SETPOINT_OUT_OF_RANGE|SPEED_CTRL|ERROR|SP-044|-|setpoint outside actuator range
+2031-05-12T10:05:12Z|NODE_C|RECOVERY_STARTED|RCV-61|REJECT_SETPOINT|SPEED_CTRL|INFO|FLT-1304|-|reject setpoint and revert
+2031-05-12T10:05:13Z|NODE_C|FAULT_CLEARED|FLT-1304|SETPOINT_OUT_OF_RANGE|SPEED_CTRL|INFO|RCV-61|2|setpoint rejected and reverted
+2031-05-12T10:06:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 12
+2031-05-12T10:12:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 13
+2031-05-12T10:18:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 14
+2031-05-12T10:24:53Z|NODE_C|SELFTEST_PASS|ST-001|SELFTEST|PLAN_SYNC|INFO|-|-|self test passed cycle 15
+===== END data/synthetic/node_C/fault_recovery.log =====

@@ -1,0 +1,32 @@
+1936342990.034 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-001 note=waypoint_1_reached
+1936343100.176 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=1 note=periodic_guidance_status
+1936343260.082 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-002 note=waypoint_2_reached
+1936343540.014 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-003 note=waypoint_3_reached
+1936343700.460 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=2 note=periodic_guidance_status
+1936343810.070 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-004 note=waypoint_4_reached
+1936344030.000 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-005 note=waypoint_5_reached
+1936344300.349 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=3 note=periodic_guidance_status
+1936344311.000 NODE_A GDN evt=SETPOINT_SENT sev=INFO comp=ALT_PROFILE cmd=CMD-1030 sp=SP-039 peer=NODE_C note=setpoint_sent_to_peer
+1936344312.600 NODE_A GDN evt=SETPOINT_COMPLETE sev=INFO comp=ALT_PROFILE cmd=CMD-1030 sp=SP-039 note=setpoint_cycle_complete
+1936344350.080 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-006 note=waypoint_6_reached
+1936344615.088 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-007 note=waypoint_7_reached
+1936344880.010 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-008 note=waypoint_8_reached
+1936344900.119 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=4 note=periodic_guidance_status
+1936345160.013 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-009 note=waypoint_9_reached
+1936345268.500 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-010 note=waypoint_10_reached
+1936345500.189 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=5 note=periodic_guidance_status
+1936345590.026 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-011 note=waypoint_11_reached
+1936345860.073 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-012 note=waypoint_12_reached
+1936346100.109 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=6 note=periodic_guidance_status
+1936346135.021 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-013 note=waypoint_13_reached
+1936346410.028 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-014 note=waypoint_14_reached
+1936346670.054 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-015 note=waypoint_15_reached
+1936346700.533 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=7 note=periodic_guidance_status
+1936346709.200 NODE_A GDN evt=SETPOINT_SENT sev=INFO comp=SPEED_CTRL cmd=CMD-1018 sp=SP-044 peer=NODE_C note=setpoint_sent_to_peer
+1936346960.006 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-016 note=waypoint_16_reached
+1936347230.064 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-017 note=waypoint_17_reached
+1936347300.476 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=8 note=periodic_guidance_status
+1936347505.033 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-018 note=waypoint_18_reached
+1936347780.021 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-019 note=waypoint_19_reached
+1936347900.447 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=9 note=periodic_guidance_status
+1936348060.016 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-020 note=waypoint_20_reached

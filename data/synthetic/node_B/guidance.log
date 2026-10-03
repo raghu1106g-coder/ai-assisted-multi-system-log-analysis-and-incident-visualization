@@ -1,0 +1,34 @@
+1936342990.559 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-001 note=waypoint_1_reached
+1936343117.753 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=1 note=periodic_guidance_status
+1936343260.463 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-002 note=waypoint_2_reached
+1936343540.490 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-003 note=waypoint_3_reached
+1936343717.820 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=2 note=periodic_guidance_status
+1936343810.407 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-004 note=waypoint_4_reached
+1936344030.210 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-005 note=waypoint_5_reached
+1936344317.584 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=3 note=periodic_guidance_status
+1936344350.241 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-006 note=waypoint_6_reached
+1936344615.488 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-007 note=waypoint_7_reached
+1936344880.592 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-008 note=waypoint_8_reached
+1936344917.895 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=4 note=periodic_guidance_status
+1936345160.437 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-009 note=waypoint_9_reached
+1936345267.250 NODE_B GDN evt=PROFILE_APPLY sev=INFO comp=NAV_FILTER plan=PLN-310 note=profile_applied_from_received_plan
+1936345268.300 NODE_B GDN evt=GUIDANCE_DEVIATION sev=WARN comp=NAV_FILTER xte=0.82 note=cross_track_error_above_soft_limit
+1936345268.620 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-010 note=waypoint_10_reached
+1936345269.500 NODE_B GDN evt=GUIDANCE_DEVIATION sev=WARN comp=NAV_FILTER xte=2.10 note=cross_track_error_above_soft_limit
+1936345268.900 NODE_B GDN evt=GUIDANCE_DEVIATION sev=WARN comp=NAV_FILTER xte=1.35 note=cross_track_error_above_soft_limit
+1936345282.400 NODE_B GDN evt=FILTER_REINIT sev=INFO comp=NAV_FILTER ref=RCV-55 note=filter_reinitialised
+1936345288.900 NODE_B GDN evt=GUIDANCE_NOMINAL sev=INFO comp=NAV_FILTER note=tracking_restored
+1936X45517.731 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=5 note=periodic_guidance_status
+1936345590.461 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-011 note=waypoint_11_reached
+1936346117.578 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=6 note=periodic_guidance_status
+1936346135.340 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-013 note=waypoint_13_reached
+1936346410.393 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-014 note=waypoint_14_reached
+1936346670.577 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-015 note=waypoint_15_reached
+1936346717.581 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=7 note=periodic_guidance_status
+1936346960.124 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-016 note=waypoint_16_reached
+1936347230.242 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-017 note=waypoint_17_reached
+1936347317.898 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=8 note=periodic_guidance_status
+1936347505.444 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-018 note=waypoint_18_reached
+1936347780.571 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-019 note=waypoint_19_reached
+1936347917.255 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=9 note=periodic_guidance_status
+1936348060.153 NODE_B GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-020 note=waypoint_20_reached

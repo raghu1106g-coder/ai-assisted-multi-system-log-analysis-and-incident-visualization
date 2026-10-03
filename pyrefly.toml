@@ -1,0 +1,9 @@
+# Pyrefly Language Server Configuration
+venv = ".venv"
+python = ".venv/Scripts/python.exe"
+site-packages = ".venv/Lib/site-packages"
+search-paths = [
+    ".",
+    "backend",
+    ".venv/Lib/site-packages"
+]

@@ -1,0 +1,15 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.pythonPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "pyrefly.interpreter": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "pyrefly.venv": ".venv",
+  "pyright.venvPath": "${workspaceFolder}",
+  "pyright.venv": ".venv",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}",
+    "${workspaceFolder}/backend",
+    "${workspaceFolder}/.venv/Lib/site-packages"
+  ],
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.typeCheckingMode": "basic"
+}

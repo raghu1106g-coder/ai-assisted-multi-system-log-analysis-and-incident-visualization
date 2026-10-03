@@ -1,0 +1,427 @@
+{
+  "_notice": "EVALUATION ONLY. Synthetic dataset 2 (fictional).",
+  "totals": {
+    "files": 15,
+    "total_lines": 1595,
+    "header_lines": 3,
+    "valid_records": 1568,
+    "malformed_records": 24,
+    "malformed_syntax_detectable": 22,
+    "malformed_semantic_only": 2,
+    "valid_records_if_semantic_rules_not_applied": 1570,
+    "byte_identical_duplicate_lines_counted_as_valid": 6
+  },
+  "records_by_log_family": {
+    "operator": 172,
+    "planning": 351,
+    "guidance": 475,
+    "state": 314,
+    "fault_recovery": 256
+  },
+  "records_by_node": {
+    "NODE_A": 565,
+    "NODE_B": 499,
+    "NODE_C": 504
+  },
+  "reason_categories": [
+    "BLANK_RECORD",
+    "CORRUPTED_DELIMITER",
+    "EXTRA_UNEXPECTED_FIELD",
+    "INCOMPLETE_RECORD",
+    "INVALID_NUMERIC_TIMESTAMP",
+    "INVALID_TIMESTAMP",
+    "MALFORMED_STRUCTURED_PAYLOAD",
+    "MISSING_EVENT_TYPE",
+    "MISSING_NODE",
+    "MISSING_REQUIRED_IDENTIFIER",
+    "MISSING_TIMESTAMP",
+    "STRAY_TOKEN",
+    "TRUNCATED_RECORD"
+  ],
+  "reason_category_counts": {
+    "BLANK_RECORD": 1,
+    "CORRUPTED_DELIMITER": 2,
+    "EXTRA_UNEXPECTED_FIELD": 2,
+    "INCOMPLETE_RECORD": 2,
+    "INVALID_NUMERIC_TIMESTAMP": 1,
+    "INVALID_TIMESTAMP": 3,
+    "MALFORMED_STRUCTURED_PAYLOAD": 1,
+    "MISSING_EVENT_TYPE": 3,
+    "MISSING_NODE": 3,
+    "MISSING_REQUIRED_IDENTIFIER": 2,
+    "MISSING_TIMESTAMP": 1,
+    "STRAY_TOKEN": 1,
+    "TRUNCATED_RECORD": 2
+  },
+  "semantic_rule_note": "Two malformed records are syntactically well-formed (operator SUBMIT_COMMAND without cmd_id; planning MESSAGE_SENT without msg_id). They are 'malformed' only under a required-identifier rule. A parser without that rule will count them as valid.",
+  "timestamp_formats": {
+    "operator": "ISO-8601 UTC ms (YYYY-MM-DDTHH:MM:SS.mmmZ)",
+    "planning": "YYYY-MM-DD HH:MM:SS.mmm (UTC, no zone marker)",
+    "guidance": "Unix epoch seconds with ms (UTC)",
+    "state": "compact UTC YYYYMMDDTHHMMSS.mmmZ",
+    "fault_recovery": "ISO-8601 UTC seconds (no ms)"
+  },
+  "expected_normalized_timestamp_range_utc": [
+    "2031-08-19T12:00:08.400Z",
+    "2031-08-19T14:59:41.545Z"
+  ],
+  "per_file": [
+    {
+      "path": "logs/NODE_A/operator/operator.log",
+      "node": "NODE_A",
+      "log_family": "operator",
+      "total_lines": 72,
+      "header_lines": 0,
+      "expected_valid_records": 70,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 14,
+          "reason_category": "MISSING_TIMESTAMP",
+          "detection_level": "SYNTAX",
+          "raw_record": "[node=NODE_A][sev=INFO] op=OP-21 action=STATUS_QUERY component=PLAN_SYNC msg=\"Operator queried status of PLAN_SYNC\"",
+          "probable_original_event_type": "STATUS_QUERY",
+          "probable_original_timestamp": "2031-08-19T12:38:43.740Z"
+        },
+        {
+          "line": 50,
+          "reason_category": "MISSING_REQUIRED_IDENTIFIER",
+          "detection_level": "SEMANTIC",
+          "raw_record": "[ts=2031-08-19T14:17:33.400Z][node=NODE_A][sev=INFO] op=OP-21 action=SUBMIT_COMMAND attempt=1 component=ROUTE_MGR msg=\"Operator confirmed route leg 8\"",
+          "probable_original_event_type": "SUBMIT_COMMAND",
+          "probable_original_timestamp": "2031-08-19T14:17:33.400Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_A/planning/planning.log",
+      "node": "NODE_A",
+      "log_family": "planning",
+      "total_lines": 155,
+      "header_lines": 1,
+      "expected_valid_records": 152,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 30,
+          "reason_category": "MISSING_REQUIRED_IDENTIFIER",
+          "detection_level": "SEMANTIC",
+          "raw_record": "2031-08-19 12:27:20.070,NODE_A,MESSAGE_SENT,PLN-704,,NODE_B,,,,PLAN_SYNC,SENT,periodic status plan sync",
+          "probable_original_event_type": "MESSAGE_SENT",
+          "probable_original_timestamp": "2031-08-19T12:27:20.070Z"
+        },
+        {
+          "line": 80,
+          "reason_category": "INCOMPLETE_RECORD",
+          "detection_level": "SYNTAX",
+          "raw_record": "2031-08-19 13:14:00.537,NODE_A,PLAN_REFRESH,PLN-512,",
+          "probable_original_event_type": "PLAN_REFRESH",
+          "probable_original_timestamp": "2031-08-19T13:14:00.537Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_A/guidance/guidance.log",
+      "node": "NODE_A",
+      "log_family": "guidance",
+      "total_lines": 158,
+      "header_lines": 0,
+      "expected_valid_records": 156,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 33,
+          "reason_category": "INVALID_NUMERIC_TIMESTAMP",
+          "detection_level": "SYNTAX",
+          "raw_record": "194x909402.065 NODE_A GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-222 note=waypoint_22_reached",
+          "probable_original_event_type": "WAYPOINT_REACHED",
+          "probable_original_timestamp": "2031-08-19T12:36:42.065Z"
+        },
+        {
+          "line": 88,
+          "reason_category": "STRAY_TOKEN",
+          "detection_level": "SYNTAX",
+          "raw_record": "1944913140.556 NODE_A GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=25 ## note=periodic_guidance_status",
+          "probable_original_event_type": "GUIDANCE_STATUS",
+          "probable_original_timestamp": "2031-08-19T13:39:00.556Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_A/state/state.log",
+      "node": "NODE_A",
+      "log_family": "state",
+      "total_lines": 109,
+      "header_lines": 0,
+      "expected_valid_records": 107,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 5,
+          "reason_category": "BLANK_RECORD",
+          "detection_level": "SYNTAX",
+          "raw_record": "",
+          "probable_original_event_type": "CONDITION_SAMPLE",
+          "probable_original_timestamp": "2031-08-19T12:03:30.333Z"
+        },
+        {
+          "line": 8,
+          "reason_category": "CORRUPTED_DELIMITER",
+          "detection_level": "SYNTAX",
+          "raw_record": "20310819T120630.059Z:NODE_A:CONDITION_SAMPLE:NAV_ENV:-;-;-;107;alt_band=L2 spd_band=S2 fuel_state=OK link=UP phase=CLIMB",
+          "probable_original_event_type": "CONDITION_SAMPLE",
+          "probable_original_timestamp": "2031-08-19T12:06:30.059Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_A/fault_recovery/fault_recovery.log",
+      "node": "NODE_A",
+      "log_family": "fault_recovery",
+      "total_lines": 81,
+      "header_lines": 0,
+      "expected_valid_records": 80,
+      "expected_malformed_records": 1,
+      "skipped_lines": [
+        {
+          "line": 69,
+          "reason_category": "CORRUPTED_DELIMITER",
+          "detection_level": "SYNTAX",
+          "raw_record": "2031-08-19T14:27:50Z¦NODE_A¦SELFTEST_PASS¦ST-020|SELFTEST_CYCLE|ROUTE_MGR|INFO|-|-|self test passed cycle 50",
+          "probable_original_event_type": "SELFTEST_PASS",
+          "probable_original_timestamp": "2031-08-19T14:27:50.000Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_B/operator/operator.log",
+      "node": "NODE_B",
+      "log_family": "operator",
+      "total_lines": 54,
+      "header_lines": 0,
+      "expected_valid_records": 52,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 2,
+          "reason_category": "MISSING_EVENT_TYPE",
+          "detection_level": "SYNTAX",
+          "raw_record": "[ts=2031-08-19T12:03:44.554Z][node=NODE_B][sev=INFO] op=OP-14 component=SPEED_CTRL msg=\"Operator logged maintenance note 299\"",
+          "probable_original_event_type": "MAINT_NOTE",
+          "probable_original_timestamp": "2031-08-19T12:03:44.554Z"
+        },
+        {
+          "line": 51,
+          "reason_category": "INVALID_TIMESTAMP",
+          "detection_level": "SYNTAX",
+          "raw_record": "[ts=2031-13-45T14:45:50.700Z][node=NODE_B][sev=INFO] op=OP-14 action=VIEW_CHANGE component=DISPLAY_SVC msg=\"Operator switched display to page P3\"",
+          "probable_original_event_type": "VIEW_CHANGE",
+          "probable_original_timestamp": "2031-08-19T14:45:50.700Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_B/planning/planning.log",
+      "node": "NODE_B",
+      "log_family": "planning",
+      "total_lines": 97,
+      "header_lines": 1,
+      "expected_valid_records": 95,
+      "expected_malformed_records": 1,
+      "skipped_lines": [
+        {
+          "line": 59,
+          "reason_category": "EXTRA_UNEXPECTED_FIELD",
+          "detection_level": "SYNTAX",
+          "raw_record": "2031-08-19 13:38:04.832,NODE_B,PLAN_REFRESH,PLN-516,,,,,,PLAN_CACHE,OK,periodic plan cache refresh,x=1",
+          "probable_original_event_type": "PLAN_REFRESH",
+          "probable_original_timestamp": "2031-08-19T13:38:04.832Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_B/guidance/guidance.log",
+      "node": "NODE_B",
+      "log_family": "guidance",
+      "total_lines": 160,
+      "header_lines": 0,
+      "expected_valid_records": 158,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 104,
+          "reason_category": "MISSING_EVENT_TYPE",
+          "detection_level": "SYNTAX",
+          "raw_record": "1944913909.561 NODE_B GDN sev=INFO comp=ROUTE_MGR wp=WP-267 note=waypoint_67_reached",
+          "probable_original_event_type": "WAYPOINT_REACHED",
+          "probable_original_timestamp": "2031-08-19T13:51:49.561Z"
+        },
+        {
+          "line": 141,
+          "reason_category": "TRUNCATED_RECORD",
+          "detection_level": "SYNTAX",
+          "raw_record": "1944916523.337 NODE_B GDN evt=GUIDANCE_",
+          "probable_original_event_type": "GUIDANCE_STATUS",
+          "probable_original_timestamp": "2031-08-19T14:35:23.337Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_B/state/state.log",
+      "node": "NODE_B",
+      "log_family": "state",
+      "total_lines": 107,
+      "header_lines": 0,
+      "expected_valid_records": 105,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 28,
+          "reason_category": "INVALID_TIMESTAMP",
+          "detection_level": "SYNTAX",
+          "raw_record": "20310819T273931.896Z;NODE_B;CONDITION_SAMPLE;NAV_ENV;-;-;-;127;alt_band=L6 spd_band=S3 fuel_state=OK link=UP phase=CRUISE",
+          "probable_original_event_type": "CONDITION_SAMPLE",
+          "probable_original_timestamp": "2031-08-19T12:39:31.896Z"
+        },
+        {
+          "line": 54,
+          "reason_category": "INCOMPLETE_RECORD",
+          "detection_level": "SYNTAX",
+          "raw_record": "20310819T132119.900Z;NODE_B;STATE_CHANGE;SENSOR_BUS;RECOVERING",
+          "probable_original_event_type": "STATE_CHANGE",
+          "probable_original_timestamp": "2031-08-19T13:21:19.900Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_B/fault_recovery/fault_recovery.log",
+      "node": "NODE_B",
+      "log_family": "fault_recovery",
+      "total_lines": 90,
+      "header_lines": 0,
+      "expected_valid_records": 89,
+      "expected_malformed_records": 1,
+      "skipped_lines": [
+        {
+          "line": 17,
+          "reason_category": "MISSING_NODE",
+          "detection_level": "SYNTAX",
+          "raw_record": "2031-08-19T12:36:59Z||SELFTEST_PASS|ST-020|SELFTEST_CYCLE|NAV_FILTER|INFO|-|-|self test passed cycle 13",
+          "probable_original_event_type": "SELFTEST_PASS",
+          "probable_original_timestamp": "2031-08-19T12:36:59.000Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_C/operator/operator.log",
+      "node": "NODE_C",
+      "log_family": "operator",
+      "total_lines": 52,
+      "header_lines": 0,
+      "expected_valid_records": 50,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 34,
+          "reason_category": "MALFORMED_STRUCTURED_PAYLOAD",
+          "detection_level": "SYNTAX",
+          "raw_record": "[ts=2031-08-19T13:41:31.912Z][node=NODE_C][sev=INFO] op=OP-18 action=VIEW_CHANGE component=DISPLAY_SVC payload={\"cfg\":\"",
+          "probable_original_event_type": "VIEW_CHANGE",
+          "probable_original_timestamp": "2031-08-19T13:41:31.912Z"
+        },
+        {
+          "line": 43,
+          "reason_category": "MISSING_NODE",
+          "detection_level": "SYNTAX",
+          "raw_record": "[ts=2031-08-19T14:18:45.969Z][node=][sev=INFO] op=OP-18 action=STATUS_QUERY component=TIME_SYNC msg=\"Operator queried status of TIME_SYNC\"",
+          "probable_original_event_type": "STATUS_QUERY",
+          "probable_original_timestamp": "2031-08-19T14:18:45.969Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_C/planning/planning.log",
+      "node": "NODE_C",
+      "log_family": "planning",
+      "total_lines": 107,
+      "header_lines": 1,
+      "expected_valid_records": 104,
+      "expected_malformed_records": 2,
+      "skipped_lines": [
+        {
+          "line": 59,
+          "reason_category": "INVALID_TIMESTAMP",
+          "detection_level": "SYNTAX",
+          "raw_record": "2031-08-19 25:61:00.307,NODE_C,PLAN_REFRESH,PLN-514,,,,,,PLAN_CACHE,OK,periodic plan cache refresh",
+          "probable_original_event_type": "PLAN_REFRESH",
+          "probable_original_timestamp": "2031-08-19T13:26:09.307Z"
+        },
+        {
+          "line": 95,
+          "reason_category": "MISSING_EVENT_TYPE",
+          "detection_level": "SYNTAX",
+          "raw_record": "2031-08-19 14:32:09.114,NODE_C,,PLN-525,,,,,,PLAN_CACHE,OK,cache revalidated",
+          "probable_original_event_type": "PLAN_REFRESH",
+          "probable_original_timestamp": "2031-08-19T14:32:09.114Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_C/guidance/guidance.log",
+      "node": "NODE_C",
+      "log_family": "guidance",
+      "total_lines": 162,
+      "header_lines": 0,
+      "expected_valid_records": 161,
+      "expected_malformed_records": 1,
+      "skipped_lines": [
+        {
+          "line": 4,
+          "reason_category": "MISSING_NODE",
+          "detection_level": "SYNTAX",
+          "raw_record": "1944907510.000 GDN evt=WAYPOINT_REACHED sev=INFO comp=ROUTE_MGR wp=WP-203 note=waypoint_3_reached",
+          "probable_original_event_type": "WAYPOINT_REACHED",
+          "probable_original_timestamp": "2031-08-19T12:05:10.000Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_C/state/state.log",
+      "node": "NODE_C",
+      "log_family": "state",
+      "total_lines": 103,
+      "header_lines": 0,
+      "expected_valid_records": 102,
+      "expected_malformed_records": 1,
+      "skipped_lines": [
+        {
+          "line": 55,
+          "reason_category": "EXTRA_UNEXPECTED_FIELD",
+          "detection_level": "SYNTAX",
+          "raw_record": "20310819T133032.372Z;NODE_C;CONDITION_SAMPLE;NAV_ENV;-;-;-;154;alt_band=L6 spd_band=S3 fuel_state=OK link=UP phase=CRUISE;unexpected",
+          "probable_original_event_type": "CONDITION_SAMPLE",
+          "probable_original_timestamp": "2031-08-19T13:30:32.372Z"
+        }
+      ]
+    },
+    {
+      "path": "logs/NODE_C/fault_recovery/fault_recovery.log",
+      "node": "NODE_C",
+      "log_family": "fault_recovery",
+      "total_lines": 88,
+      "header_lines": 0,
+      "expected_valid_records": 87,
+      "expected_malformed_records": 1,
+      "skipped_lines": [
+        {
+          "line": 51,
+          "reason_category": "TRUNCATED_RECORD",
+          "detection_level": "SYNTAX",
+          "raw_record": "2031-08-19T13:49:22Z|NODE_C|FAULT_RAISED|FLT-8493|PWR_RAIL_S",
+          "probable_original_event_type": "FAULT_RAISED",
+          "probable_original_timestamp": "2031-08-19T13:49:22.000Z"
+        }
+      ]
+    }
+  ]
+}

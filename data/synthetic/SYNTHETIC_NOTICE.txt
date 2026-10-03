@@ -1,0 +1,4 @@
+SYNTHETIC PROTOTYPE DATA - FICTIONAL
+All content under data/synthetic/ was generated for hackathon prototyping of Problem Statement 3.
+It is NOT the official dataset, NOT real flight-management data, and the log-family names,
+formats, event types, identifiers and fault codes are prototype assumptions only.

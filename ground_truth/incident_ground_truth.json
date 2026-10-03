@@ -1,0 +1,1570 @@
+{
+  "_notice": "GROUND TRUTH FOR EVALUATION ONLY. Never feed to the ingest/correlation engine. Synthetic prototype - not official data.",
+  "dataset_id": "PS3-SYNTH-PROTO-v1",
+  "incidents": [
+    {
+      "incident_id": "INC-001",
+      "title": "Plan distribution followed by NAV_FILTER divergence (NODE_B) and plan-sync timeout (NODE_C)",
+      "kind": "INCIDENT",
+      "primary": true,
+      "involved_nodes": [
+        "NODE_A",
+        "NODE_B",
+        "NODE_C"
+      ],
+      "time_window_utc": [
+        "2031-05-12T09:41:02.120Z",
+        "2031-05-12T09:41:30.400Z"
+      ],
+      "log_families_present": [
+        "fault_recovery",
+        "guidance",
+        "operator",
+        "planning",
+        "state"
+      ],
+      "event_ids": [
+        {
+          "event_id": "EVT-A-OPR-0008",
+          "label": "i1_op_submit1",
+          "source_file": "data/synthetic/node_A/operator.log",
+          "source_line": 8,
+          "timestamp": "2031-05-12T09:41:02.120Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0010",
+          "label": "i1_s_A_replan",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 10,
+          "timestamp": "2031-05-12T09:41:02.480Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0017",
+          "label": "i1_pl_req",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 17,
+          "timestamp": "2031-05-12T09:41:02.600Z"
+        },
+        {
+          "event_id": "EVT-A-OPR-0009",
+          "label": "i1_op_submit2",
+          "source_file": "data/synthetic/node_A/operator.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:41:03.900Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0019",
+          "label": "i1_pl_comp",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 19,
+          "timestamp": "2031-05-12T09:41:05.900Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0018",
+          "label": "i1_msg771_sent",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 18,
+          "timestamp": "2031-05-12T09:41:06.350Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0020",
+          "label": "i1_msg772_sent",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 20,
+          "timestamp": "2031-05-12T09:41:06.360Z"
+        },
+        {
+          "event_id": "EVT-B-PLN-0011",
+          "label": "i1_msg771_recv",
+          "source_file": "data/synthetic/node_B/planning.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:06.700Z"
+        },
+        {
+          "event_id": "EVT-C-PLN-0011",
+          "label": "i1_msg772_recv",
+          "source_file": "data/synthetic/node_C/planning.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:06.710Z"
+        },
+        {
+          "event_id": "EVT-B-PLN-0012",
+          "label": "i1_msg771_ack",
+          "source_file": "data/synthetic/node_B/planning.log",
+          "source_line": 12,
+          "timestamp": "2031-05-12T09:41:06.980Z"
+        },
+        {
+          "event_id": "EVT-B-GDN-0014",
+          "label": "i1_g_B_apply",
+          "source_file": "data/synthetic/node_B/guidance.log",
+          "source_line": 14,
+          "timestamp": "2031-05-12T09:41:07.250Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0017",
+          "label": "i1_g_C_apply",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 17,
+          "timestamp": "2031-05-12T09:41:07.250Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0021",
+          "label": "i1_msg771_done",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 21,
+          "timestamp": "2031-05-12T09:41:07.600Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0011",
+          "label": "i1_s_A_active",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:07.900Z"
+        },
+        {
+          "event_id": "EVT-B-GDN-0015",
+          "label": "i1_g_B_dev1",
+          "source_file": "data/synthetic/node_B/guidance.log",
+          "source_line": 15,
+          "timestamp": "2031-05-12T09:41:08.300Z"
+        },
+        {
+          "event_id": "EVT-B-STA-0010",
+          "label": "i1_s_B_deg",
+          "source_file": "data/synthetic/node_B/state.log",
+          "source_line": 10,
+          "timestamp": "2031-05-12T09:41:08.900Z"
+        },
+        {
+          "event_id": "EVT-B-GDN-0018",
+          "label": "i1_g_B_dev2",
+          "source_file": "data/synthetic/node_B/guidance.log",
+          "source_line": 18,
+          "timestamp": "2031-05-12T09:41:08.900Z"
+        },
+        {
+          "event_id": "EVT-B-FLT-0009",
+          "label": "i1_f_B_raise",
+          "source_file": "data/synthetic/node_B/fault_recovery.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:41:09.000Z"
+        },
+        {
+          "event_id": "EVT-B-FLT-0010",
+          "label": "i1_f_B_notice",
+          "source_file": "data/synthetic/node_B/fault_recovery.log",
+          "source_line": 10,
+          "timestamp": "2031-05-12T09:41:09.000Z"
+        },
+        {
+          "event_id": "EVT-B-GDN-0017",
+          "label": "i1_g_B_dev3",
+          "source_file": "data/synthetic/node_B/guidance.log",
+          "source_line": 17,
+          "timestamp": "2031-05-12T09:41:09.500Z"
+        },
+        {
+          "event_id": "EVT-A-FLT-0010",
+          "label": "i1_f_A_notice_B",
+          "source_file": "data/synthetic/node_A/fault_recovery.log",
+          "source_line": 10,
+          "timestamp": "2031-05-12T09:41:10.000Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0012",
+          "label": "i1_s_A_peerB_deg",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 12,
+          "timestamp": "2031-05-12T09:41:10.100Z"
+        },
+        {
+          "event_id": "EVT-B-OPR-0010",
+          "label": "i1_op_B_query",
+          "source_file": "data/synthetic/node_B/operator.log",
+          "source_line": 10,
+          "timestamp": "2031-05-12T09:41:12.500Z"
+        },
+        {
+          "event_id": "EVT-C-FLT-0009",
+          "label": "i1_f_C_timeout1",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:41:16.000Z"
+        },
+        {
+          "event_id": "EVT-C-STA-0013",
+          "label": "i1_s_C_stale",
+          "source_file": "data/synthetic/node_C/state.log",
+          "source_line": 13,
+          "timestamp": "2031-05-12T09:41:16.100Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0019",
+          "label": "i1_g_C_hold",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 19,
+          "timestamp": "2031-05-12T09:41:16.500Z"
+        },
+        {
+          "event_id": "EVT-C-FLT-0010",
+          "label": "i1_f_C_notice",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 10,
+          "timestamp": "2031-05-12T09:41:17.000Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0013",
+          "label": "i1_s_A_peerC_deg",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 13,
+          "timestamp": "2031-05-12T09:41:17.200Z"
+        },
+        {
+          "event_id": "EVT-A-FLT-0011",
+          "label": "i1_f_A_notice_C",
+          "source_file": "data/synthetic/node_A/fault_recovery.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:18.000Z"
+        },
+        {
+          "event_id": "EVT-C-FLT-0011",
+          "label": "i1_f_C_timeout2",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:19.000Z"
+        },
+        {
+          "event_id": "EVT-B-FLT-0011",
+          "label": "i1_f_B_rcv",
+          "source_file": "data/synthetic/node_B/fault_recovery.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:21.000Z"
+        },
+        {
+          "event_id": "EVT-B-STA-0011",
+          "label": "i1_s_B_rec",
+          "source_file": "data/synthetic/node_B/state.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:21.200Z"
+        },
+        {
+          "event_id": "EVT-B-GDN-0019",
+          "label": "i1_g_B_reinit",
+          "source_file": "data/synthetic/node_B/guidance.log",
+          "source_line": 19,
+          "timestamp": "2031-05-12T09:41:22.400Z"
+        },
+        {
+          "event_id": "EVT-C-FLT-0013",
+          "label": "i1_f_C_rcv",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 13,
+          "timestamp": "2031-05-12T09:41:24.000Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0022",
+          "label": "i1_msg779_sent",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 22,
+          "timestamp": "2031-05-12T09:41:25.100Z"
+        },
+        {
+          "event_id": "EVT-C-PLN-0012",
+          "label": "i1_msg779_recv",
+          "source_file": "data/synthetic/node_C/planning.log",
+          "source_line": 12,
+          "timestamp": "2031-05-12T09:41:25.500Z"
+        },
+        {
+          "event_id": "EVT-C-PLN-0013",
+          "label": "i1_msg779_ack",
+          "source_file": "data/synthetic/node_C/planning.log",
+          "source_line": 13,
+          "timestamp": "2031-05-12T09:41:25.800Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0023",
+          "label": "i1_msg779_done",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 23,
+          "timestamp": "2031-05-12T09:41:26.100Z"
+        },
+        {
+          "event_id": "EVT-C-STA-0012",
+          "label": "i1_s_C_synced",
+          "source_file": "data/synthetic/node_C/state.log",
+          "source_line": 12,
+          "timestamp": "2031-05-12T09:41:26.300Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0020",
+          "label": "i1_g_C_resume",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 20,
+          "timestamp": "2031-05-12T09:41:26.800Z"
+        },
+        {
+          "event_id": "EVT-C-FLT-0014",
+          "label": "i1_f_C_clear",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 14,
+          "timestamp": "2031-05-12T09:41:27.000Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0014",
+          "label": "i1_s_A_peerC_ok",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 14,
+          "timestamp": "2031-05-12T09:41:27.400Z"
+        },
+        {
+          "event_id": "EVT-B-STA-0012",
+          "label": "i1_s_B_nom",
+          "source_file": "data/synthetic/node_B/state.log",
+          "source_line": 12,
+          "timestamp": "2031-05-12T09:41:28.600Z"
+        },
+        {
+          "event_id": "EVT-B-GDN-0020",
+          "label": "i1_g_B_stable",
+          "source_file": "data/synthetic/node_B/guidance.log",
+          "source_line": 20,
+          "timestamp": "2031-05-12T09:41:28.900Z"
+        },
+        {
+          "event_id": "EVT-B-FLT-0012",
+          "label": "i1_f_B_clear",
+          "source_file": "data/synthetic/node_B/fault_recovery.log",
+          "source_line": 12,
+          "timestamp": "2031-05-12T09:41:29.000Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0015",
+          "label": "i1_s_A_peerB_ok",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 15,
+          "timestamp": "2031-05-12T09:41:29.200Z"
+        },
+        {
+          "event_id": "EVT-A-OPR-0011",
+          "label": "i1_op_ack_alert",
+          "source_file": "data/synthetic/node_A/operator.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:30.400Z"
+        }
+      ],
+      "primary_fault": {
+        "fault_code": "FLT-2207",
+        "fault_name": "NAV_FILTER_DIVERGENCE",
+        "node": "NODE_B",
+        "component": "NAV_FILTER",
+        "raised_event_id": "EVT-B-FLT-0009",
+        "cleared_event_id": "EVT-B-FLT-0012",
+        "recovery_event_id": "EVT-B-FLT-0011",
+        "reported_duration_s": 20,
+        "computed_duration_s": 20
+      },
+      "secondary_faults": [
+        {
+          "fault_code": "FLT-2210",
+          "fault_name": "PLAN_SYNC_TIMEOUT",
+          "node": "NODE_C",
+          "component": "PLAN_SYNC",
+          "raised_event_id": "EVT-C-FLT-0009",
+          "cleared_event_id": "EVT-C-FLT-0014",
+          "recovery_event_id": "EVT-C-FLT-0013",
+          "reported_duration_s": 11,
+          "computed_duration_s": 11
+        }
+      ],
+      "recovery_event": {
+        "primary": {
+          "event_id": "EVT-B-FLT-0011",
+          "label": "i1_f_B_rcv",
+          "source_file": "data/synthetic/node_B/fault_recovery.log",
+          "source_line": 11,
+          "timestamp": "2031-05-12T09:41:21.000Z"
+        },
+        "secondary": {
+          "event_id": "EVT-C-FLT-0013",
+          "label": "i1_f_C_rcv",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 13,
+          "timestamp": "2031-05-12T09:41:24.000Z"
+        }
+      },
+      "expected_relationship_ids": [
+        "REL-001",
+        "REL-002",
+        "REL-003",
+        "REL-004",
+        "REL-005",
+        "REL-006",
+        "REL-007",
+        "REL-008",
+        "REL-009",
+        "REL-010",
+        "REL-011",
+        "REL-012",
+        "REL-013",
+        "REL-014",
+        "REL-015",
+        "REL-016",
+        "REL-017",
+        "REL-018",
+        "REL-019",
+        "REL-020",
+        "REL-021",
+        "REL-022",
+        "REL-023",
+        "REL-024",
+        "REL-025",
+        "REL-026",
+        "REL-027",
+        "REL-028",
+        "REL-029",
+        "REL-030",
+        "REL-031",
+        "REL-032",
+        "REL-033",
+        "REL-034",
+        "REL-035",
+        "REL-036",
+        "REL-037",
+        "REL-038",
+        "REL-039",
+        "REL-040",
+        "REL-041",
+        "REL-042",
+        "REL-043",
+        "REL-044",
+        "REL-045",
+        "REL-046",
+        "REL-047",
+        "REL-048",
+        "REL-049",
+        "REL-050",
+        "REL-051",
+        "REL-052",
+        "REL-053"
+      ],
+      "repeated_events": [
+        {
+          "description": "Operator resubmitted CMD-1042 (attempt 1 and 2)",
+          "event_ids": [
+            "EVT-A-OPR-0008",
+            "EVT-A-OPR-0009"
+          ]
+        },
+        {
+          "description": "GUIDANCE_DEVIATION on NODE_B three times within ~1.2s (xte rising)",
+          "event_ids": [
+            "EVT-B-GDN-0015",
+            "EVT-B-GDN-0018",
+            "EVT-B-GDN-0017"
+          ]
+        },
+        {
+          "description": "FLT-2210 raised twice as valid records; a third raise was lost to a malformed line",
+          "event_ids": [
+            "EVT-C-FLT-0009",
+            "EVT-C-FLT-0011"
+          ]
+        }
+      ],
+      "simultaneous_events": [
+        {
+          "description": "PROFILE_APPLY on NODE_B and NODE_C with identical millisecond timestamp",
+          "event_ids": [
+            "EVT-B-GDN-0014",
+            "EVT-C-GDN-0017"
+          ],
+          "timestamp": "2031-05-12T09:41:07.250Z"
+        },
+        {
+          "description": "NODE_B FAULT_RAISED FLT-2207 and FAULT_NOTICE_SENT share the same second (fault family is second-resolution)",
+          "event_ids": [
+            "EVT-B-FLT-0009",
+            "EVT-B-FLT-0010"
+          ],
+          "timestamp": "2031-05-12T09:41:09.000Z"
+        }
+      ],
+      "intentionally_missing_events": [
+        {
+          "description": "MESSAGE_ACK for MSG-772 from NODE_C never logged (every other exchange in the dataset has an ACK)",
+          "expected_after_event_id": "EVT-C-PLN-0011",
+          "expected_pattern": "SEND->RECV->ACK->COMPLETE",
+          "absence_check": {
+            "node": "NODE_C",
+            "log_family": "planning",
+            "event_type": "MESSAGE_ACK",
+            "key": "MSG-772"
+          }
+        },
+        {
+          "description": "EXCHANGE_COMPLETE for MSG-772 on NODE_A never logged",
+          "expected_after_event_id": "EVT-A-PLN-0020",
+          "expected_pattern": "SEND->RECV->ACK->COMPLETE",
+          "absence_check": {
+            "node": "NODE_A",
+            "log_family": "planning",
+            "event_type": "EXCHANGE_COMPLETE",
+            "key": "MSG-772"
+          }
+        }
+      ],
+      "malformed_records": [
+        {
+          "source_file": "data/synthetic/node_A/operator.log",
+          "source_line": 10,
+          "reason": "missing_timestamp",
+          "raw_record": "[node=NODE_A][sev=INFO] op=OP-07 action=VIEW_CHANGE component=DISPLAY_SVC msg=\"Operator opened fault panel\"",
+          "probable_original": {
+            "timestamp": "2031-05-12T09:41:04.500Z",
+            "node": "NODE_A",
+            "log_family": "operator",
+            "event_type": "VIEW_CHANGE",
+            "message": "Operator opened fault panel"
+          }
+        },
+        {
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 12,
+          "reason": "corrupted_event_name",
+          "raw_record": "2031-05-12T09:41:22Z|NODE_C|FAUL�_RA�SED|FLT-2210|PLAN_SYNC_TIMEOUT|PLAN_SYNC|ERROR|MSG-772|-|sync timer expired again (repeat 3) for MSG-772",
+          "probable_original": {
+            "timestamp": "2031-05-12T09:41:22.000Z",
+            "node": "NODE_C",
+            "log_family": "fault_recovery",
+            "event_type": "FAULT_RAISED",
+            "message": "sync timer expired again (repeat 3) for MSG-772"
+          }
+        }
+      ],
+      "unrelated_events_nearby": [
+        {
+          "event_id": "EVT-C-OPR-0009",
+          "label": "u1_op_C_display",
+          "source_file": "data/synthetic/node_C/operator.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:41:08.000Z"
+        },
+        {
+          "event_id": "EVT-A-FLT-0009",
+          "label": "u1_f_A_jitter",
+          "source_file": "data/synthetic/node_A/fault_recovery.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:41:11.000Z"
+        },
+        {
+          "event_id": "EVT-A-GDN-0016",
+          "label": "bg_gd_A_wp10",
+          "source_file": "data/synthetic/node_A/guidance.log",
+          "source_line": 16,
+          "timestamp": "2031-05-12T09:41:08.500Z"
+        },
+        {
+          "event_id": "EVT-B-GDN-0016",
+          "label": "bg_gd_B_wp10",
+          "source_file": "data/synthetic/node_B/guidance.log",
+          "source_line": 16,
+          "timestamp": "2031-05-12T09:41:08.620Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0018",
+          "label": "bg_gd_C_wp10",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 18,
+          "timestamp": "2031-05-12T09:41:08.710Z"
+        }
+      ],
+      "relationships_that_should_not_be_inferred": [
+        {
+          "source": {
+            "event_id": "EVT-A-OPR-0008",
+            "label": "i1_op_submit1",
+            "source_file": "data/synthetic/node_A/operator.log",
+            "source_line": 8,
+            "timestamp": "2031-05-12T09:41:02.120Z"
+          },
+          "target": {
+            "event_id": "EVT-B-FLT-0009",
+            "label": "i1_f_B_raise",
+            "source_file": "data/synthetic/node_B/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:09.000Z"
+          },
+          "why": "Do not say the operator command caused the divergence; only a ~7s temporal association exists."
+        },
+        {
+          "source": {
+            "event_id": "EVT-B-GDN-0014",
+            "label": "i1_g_B_apply",
+            "source_file": "data/synthetic/node_B/guidance.log",
+            "source_line": 14,
+            "timestamp": "2031-05-12T09:41:07.250Z"
+          },
+          "target": {
+            "event_id": "EVT-B-FLT-0009",
+            "label": "i1_f_B_raise",
+            "source_file": "data/synthetic/node_B/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:09.000Z"
+          },
+          "why": "Plausible, not provable: no id links profile application to the fault."
+        },
+        {
+          "source": {
+            "event_id": "EVT-B-FLT-0009",
+            "label": "i1_f_B_raise",
+            "source_file": "data/synthetic/node_B/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:09.000Z"
+          },
+          "target": {
+            "event_id": "EVT-C-FLT-0009",
+            "label": "i1_f_C_timeout1",
+            "source_file": "data/synthetic/node_C/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:16.000Z"
+          },
+          "why": "Do not say FLT-2207 caused FLT-2210; different node, component and no reference."
+        },
+        {
+          "source": {
+            "event_id": "EVT-A-FLT-0009",
+            "label": "u1_f_A_jitter",
+            "source_file": "data/synthetic/node_A/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:11.000Z"
+          },
+          "target": {
+            "event_id": "EVT-C-FLT-0009",
+            "label": "i1_f_C_timeout1",
+            "source_file": "data/synthetic/node_C/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:16.000Z"
+          },
+          "why": "A-side link jitter is not shown to explain the missing ACK."
+        },
+        {
+          "source": {
+            "event_id": "EVT-A-FLT-0009",
+            "label": "u1_f_A_jitter",
+            "source_file": "data/synthetic/node_A/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:11.000Z"
+          },
+          "target": {
+            "event_id": "EVT-B-FLT-0009",
+            "label": "i1_f_B_raise",
+            "source_file": "data/synthetic/node_B/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:09.000Z"
+          },
+          "why": "Unrelated transient warning on another component."
+        },
+        {
+          "source": {
+            "event_id": "EVT-C-OPR-0009",
+            "label": "u1_op_C_display",
+            "source_file": "data/synthetic/node_C/operator.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:08.000Z"
+          },
+          "target": {
+            "event_id": "EVT-B-FLT-0009",
+            "label": "i1_f_B_raise",
+            "source_file": "data/synthetic/node_B/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:09.000Z"
+          },
+          "why": "Unrelated operator action (display brightness)."
+        },
+        {
+          "source": {
+            "event_id": "EVT-A-GDN-0016",
+            "label": "bg_gd_A_wp10",
+            "source_file": "data/synthetic/node_A/guidance.log",
+            "source_line": 16,
+            "timestamp": "2031-05-12T09:41:08.500Z"
+          },
+          "target": {
+            "event_id": "EVT-B-FLT-0009",
+            "label": "i1_f_B_raise",
+            "source_file": "data/synthetic/node_B/fault_recovery.log",
+            "source_line": 9,
+            "timestamp": "2031-05-12T09:41:09.000Z"
+          },
+          "why": "Routine waypoint event on another node; unrelated."
+        }
+      ],
+      "uncertainty_examples": {
+        "CONFIRMED_OBSERVATION": [
+          {
+            "claim": "FLT-2207 NAV_FILTER_DIVERGENCE was raised on NODE_B at 09:41:09Z (second resolution).",
+            "evidence": [
+              "EVT-B-FLT-0009"
+            ]
+          }
+        ],
+        "STRONG_SUPPORTED_RELATIONSHIP": [
+          {
+            "claim": "NODE_A sent plan PLN-310 as MSG-771 and NODE_B received and acknowledged it.",
+            "evidence": [
+              "EVT-A-PLN-0018",
+              "EVT-B-PLN-0011",
+              "EVT-B-PLN-0012"
+            ]
+          },
+          {
+            "claim": "The plan request PLN-310 was made under operator command CMD-1042.",
+            "evidence": [
+              "EVT-A-OPR-0008",
+              "EVT-A-PLN-0017"
+            ]
+          }
+        ],
+        "POSSIBLE_RELATIONSHIP": [
+          {
+            "claim": "Applying PLN-310 may be related to the NAV_FILTER divergence; both involve NAV_FILTER within 2s, but causation is not established by the available records.",
+            "evidence": [
+              "EVT-B-GDN-0014",
+              "EVT-B-FLT-0009"
+            ]
+          }
+        ],
+        "INSUFFICIENT_EVIDENCE": [
+          {
+            "claim": "Whether FLT-2207 and FLT-2210 share a cause cannot be determined; they are temporally close only.",
+            "evidence": [
+              "EVT-B-FLT-0009",
+              "EVT-C-FLT-0009"
+            ]
+          }
+        ],
+        "MISSING_INFORMATION": [
+          {
+            "claim": "No acknowledgement of MSG-772 appears in NODE_C's records; why is unknown. A third FLT-2210 raise at ~09:41:22 may have been lost to a malformed line.",
+            "evidence": [
+              "EVT-C-PLN-0011",
+              "EVT-C-FLT-0011"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "incident_id": "INC-002",
+      "title": "Out-of-range speed setpoint rejected by NODE_C (smaller, two-node incident)",
+      "kind": "INCIDENT",
+      "primary": false,
+      "involved_nodes": [
+        "NODE_A",
+        "NODE_C"
+      ],
+      "time_window_utc": [
+        "2031-05-12T10:05:08.300Z",
+        "2031-05-12T10:05:16.200Z"
+      ],
+      "log_families_present": [
+        "fault_recovery",
+        "guidance",
+        "operator",
+        "state"
+      ],
+      "event_ids": [
+        {
+          "event_id": "EVT-A-OPR-0014",
+          "label": "i2_op_cmd",
+          "source_file": "data/synthetic/node_A/operator.log",
+          "source_line": 14,
+          "timestamp": "2031-05-12T10:05:08.300Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0018",
+          "label": "i2_s_A",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 18,
+          "timestamp": "2031-05-12T10:05:08.700Z"
+        },
+        {
+          "event_id": "EVT-A-GDN-0025",
+          "label": "i2_g_A_sent",
+          "source_file": "data/synthetic/node_A/guidance.log",
+          "source_line": 25,
+          "timestamp": "2031-05-12T10:05:09.200Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0028",
+          "label": "i2_g_C_recv",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 28,
+          "timestamp": "2031-05-12T10:05:09.450Z"
+        },
+        {
+          "event_id": "EVT-C-STA-0016",
+          "label": "i2_s_C",
+          "source_file": "data/synthetic/node_C/state.log",
+          "source_line": 16,
+          "timestamp": "2031-05-12T10:05:09.800Z"
+        },
+        {
+          "event_id": "EVT-C-FLT-0019",
+          "label": "i2_f_C_raise",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 19,
+          "timestamp": "2031-05-12T10:05:11.000Z"
+        },
+        {
+          "event_id": "EVT-C-FLT-0020",
+          "label": "i2_f_C_rcv",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 20,
+          "timestamp": "2031-05-12T10:05:12.000Z"
+        },
+        {
+          "event_id": "EVT-C-STA-0017",
+          "label": "i2_s_C_rev",
+          "source_file": "data/synthetic/node_C/state.log",
+          "source_line": 17,
+          "timestamp": "2031-05-12T10:05:12.600Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0029",
+          "label": "i2_g_C_reject",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 29,
+          "timestamp": "2031-05-12T10:05:12.800Z"
+        },
+        {
+          "event_id": "EVT-C-FLT-0021",
+          "label": "i2_f_C_clear",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 21,
+          "timestamp": "2031-05-12T10:05:13.000Z"
+        },
+        {
+          "event_id": "EVT-A-OPR-0015",
+          "label": "i2_op_A_query",
+          "source_file": "data/synthetic/node_A/operator.log",
+          "source_line": 15,
+          "timestamp": "2031-05-12T10:05:16.200Z"
+        }
+      ],
+      "primary_fault": {
+        "fault_code": "FLT-1304",
+        "fault_name": "SETPOINT_OUT_OF_RANGE",
+        "node": "NODE_C",
+        "component": "SPEED_CTRL",
+        "raised_event_id": "EVT-C-FLT-0019",
+        "cleared_event_id": "EVT-C-FLT-0021",
+        "recovery_event_id": "EVT-C-FLT-0020",
+        "reported_duration_s": 2,
+        "computed_duration_s": 2
+      },
+      "secondary_faults": [],
+      "recovery_event": {
+        "primary": {
+          "event_id": "EVT-C-FLT-0020",
+          "label": "i2_f_C_rcv",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 20,
+          "timestamp": "2031-05-12T10:05:12.000Z"
+        }
+      },
+      "expected_relationship_ids": [
+        "REL-054",
+        "REL-055",
+        "REL-056",
+        "REL-057",
+        "REL-058",
+        "REL-059",
+        "REL-060",
+        "REL-061",
+        "REL-062",
+        "REL-063",
+        "REL-064",
+        "REL-065",
+        "REL-066",
+        "REL-067"
+      ],
+      "repeated_events": [],
+      "simultaneous_events": [
+        {
+          "description": "NODE_C FLT-1304 raised and NODE_A unrelated link-jitter warning share the same second on different nodes",
+          "event_ids": [
+            "EVT-C-FLT-0019",
+            "EVT-A-FLT-0017"
+          ],
+          "timestamp": "2031-05-12T10:05:11.000Z"
+        }
+      ],
+      "intentionally_missing_events": [
+        {
+          "description": "SETPOINT_ACK for SP-044 from NODE_C (complete exchanges elsewhere, e.g. SP-039, have it)",
+          "expected_after_event_id": "EVT-C-GDN-0028",
+          "expected_pattern": "SENT->RECV->ACK->APPLIED->COMPLETE",
+          "absence_check": {
+            "node": "NODE_C",
+            "log_family": "guidance",
+            "event_type": "SETPOINT_ACK",
+            "key": "SP-044"
+          }
+        },
+        {
+          "description": "SETPOINT_APPLIED for SP-044 on NODE_C",
+          "expected_after_event_id": "EVT-C-GDN-0028",
+          "expected_pattern": "SENT->RECV->ACK->APPLIED->COMPLETE",
+          "absence_check": {
+            "node": "NODE_C",
+            "log_family": "guidance",
+            "event_type": "SETPOINT_APPLIED",
+            "key": "SP-044"
+          }
+        },
+        {
+          "description": "NODE_A SPEED_CTRL never returns ADJUSTING->STABLE in the supplied logs (A is left ADJUSTING)",
+          "expected_after_event_id": "EVT-A-STA-0018",
+          "expected_pattern": "STATE ADJUSTING->STABLE",
+          "absence_check": {
+            "node": "NODE_A",
+            "log_family": "state",
+            "event_type": "STATE_CHANGE",
+            "key": ";SPEED_CTRL;ADJUSTING;STABLE;"
+          }
+        }
+      ],
+      "malformed_records": [],
+      "unrelated_events_nearby": [
+        {
+          "event_id": "EVT-A-FLT-0017",
+          "label": "u2_f_A_jitter",
+          "source_file": "data/synthetic/node_A/fault_recovery.log",
+          "source_line": 17,
+          "timestamp": "2031-05-12T10:05:11.000Z"
+        },
+        {
+          "event_id": "EVT-B-OPR-0020",
+          "label": "u2_op_B_note",
+          "source_file": "data/synthetic/node_B/operator.log",
+          "source_line": 20,
+          "timestamp": "2031-05-12T10:05:20.400Z"
+        }
+      ],
+      "relationships_that_should_not_be_inferred": [
+        {
+          "source": {
+            "event_id": "EVT-A-FLT-0017",
+            "label": "u2_f_A_jitter",
+            "source_file": "data/synthetic/node_A/fault_recovery.log",
+            "source_line": 17,
+            "timestamp": "2031-05-12T10:05:11.000Z"
+          },
+          "target": {
+            "event_id": "EVT-C-FLT-0019",
+            "label": "i2_f_C_raise",
+            "source_file": "data/synthetic/node_C/fault_recovery.log",
+            "source_line": 19,
+            "timestamp": "2031-05-12T10:05:11.000Z"
+          },
+          "why": "A-side link jitter does not explain a C-side range fault; simultaneous second only."
+        },
+        {
+          "source": {
+            "event_id": "EVT-B-OPR-0020",
+            "label": "u2_op_B_note",
+            "source_file": "data/synthetic/node_B/operator.log",
+            "source_line": 20,
+            "timestamp": "2031-05-12T10:05:20.400Z"
+          },
+          "target": {
+            "event_id": "EVT-C-FLT-0019",
+            "label": "i2_f_C_raise",
+            "source_file": "data/synthetic/node_C/fault_recovery.log",
+            "source_line": 19,
+            "timestamp": "2031-05-12T10:05:11.000Z"
+          },
+          "why": "NODE_B is not part of this incident."
+        },
+        {
+          "source": {
+            "event_id": "EVT-A-OPR-0014",
+            "label": "i2_op_cmd",
+            "source_file": "data/synthetic/node_A/operator.log",
+            "source_line": 14,
+            "timestamp": "2031-05-12T10:05:08.300Z"
+          },
+          "target": {
+            "event_id": "EVT-C-FLT-0019",
+            "label": "i2_f_C_raise",
+            "source_file": "data/synthetic/node_C/fault_recovery.log",
+            "source_line": 19,
+            "timestamp": "2031-05-12T10:05:11.000Z"
+          },
+          "why": "Explicit chain exists via SP-044, but the logs do not state the numeric value; do not claim the operator 'caused' the fault beyond the referenced chain."
+        }
+      ],
+      "uncertainty_examples": {
+        "CONFIRMED_OBSERVATION": [
+          {
+            "claim": "NODE_C raised FLT-1304 and cleared it 2s later.",
+            "evidence": [
+              "EVT-C-FLT-0019",
+              "EVT-C-FLT-0021"
+            ]
+          }
+        ],
+        "STRONG_SUPPORTED_RELATIONSHIP": [
+          {
+            "claim": "FLT-1304 concerns setpoint SP-044, which NODE_C received from NODE_A for CMD-1018.",
+            "evidence": [
+              "EVT-A-GDN-0025",
+              "EVT-C-GDN-0028",
+              "EVT-C-FLT-0019"
+            ]
+          }
+        ],
+        "POSSIBLE_RELATIONSHIP": [
+          {
+            "claim": "The NODE_A operator status query may be a follow-up to the adjustment.",
+            "evidence": [
+              "EVT-A-OPR-0015",
+              "EVT-A-STA-0018"
+            ]
+          }
+        ],
+        "INSUFFICIENT_EVIDENCE": [
+          {
+            "claim": "Link jitter on NODE_A is not shown to be involved.",
+            "evidence": [
+              "EVT-A-FLT-0017"
+            ]
+          }
+        ],
+        "MISSING_INFORMATION": [
+          {
+            "claim": "NODE_A's SPEED_CTRL state is never reported back to STABLE; its final state is unknown.",
+            "evidence": [
+              "EVT-A-STA-0018"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "incident_id": "INC-003",
+      "title": "Routine altitude profile step and plan sync (NORMAL OPERATION - not a fault incident)",
+      "kind": "NON_INCIDENT_NORMAL_OPERATION",
+      "primary": false,
+      "involved_nodes": [
+        "NODE_A",
+        "NODE_B",
+        "NODE_C"
+      ],
+      "time_window_utc": [
+        "2031-05-12T09:25:10.200Z",
+        "2031-05-12T09:25:40.350Z"
+      ],
+      "log_families_present": [
+        "guidance",
+        "operator",
+        "planning",
+        "state"
+      ],
+      "event_ids": [
+        {
+          "event_id": "EVT-A-OPR-0007",
+          "label": "i3_op_cmd",
+          "source_file": "data/synthetic/node_A/operator.log",
+          "source_line": 7,
+          "timestamp": "2031-05-12T09:25:10.200Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0006",
+          "label": "i3_s_A_step",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 6,
+          "timestamp": "2031-05-12T09:25:10.550Z"
+        },
+        {
+          "event_id": "EVT-A-GDN-0009",
+          "label": "i3_g_A_sent",
+          "source_file": "data/synthetic/node_A/guidance.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:25:11.000Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0008",
+          "label": "i3_g_C_recv",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 8,
+          "timestamp": "2031-05-12T09:25:11.240Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0009",
+          "label": "i3_g_C_ack",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:25:11.500Z"
+        },
+        {
+          "event_id": "EVT-C-GDN-0010",
+          "label": "i3_g_C_applied",
+          "source_file": "data/synthetic/node_C/guidance.log",
+          "source_line": 10,
+          "timestamp": "2031-05-12T09:25:12.300Z"
+        },
+        {
+          "event_id": "EVT-C-STA-0008",
+          "label": "i3_s_C_step",
+          "source_file": "data/synthetic/node_C/state.log",
+          "source_line": 8,
+          "timestamp": "2031-05-12T09:25:12.350Z"
+        },
+        {
+          "event_id": "EVT-A-GDN-0010",
+          "label": "i3_g_A_done",
+          "source_file": "data/synthetic/node_A/guidance.log",
+          "source_line": 10,
+          "timestamp": "2031-05-12T09:25:12.600Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0012",
+          "label": "i3_msg740_sent",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 12,
+          "timestamp": "2031-05-12T09:25:30.137Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0013",
+          "label": "i3_msg741_sent",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 13,
+          "timestamp": "2031-05-12T09:25:30.375Z"
+        },
+        {
+          "event_id": "EVT-B-PLN-0008",
+          "label": "i3_msg740_recv",
+          "source_file": "data/synthetic/node_B/planning.log",
+          "source_line": 8,
+          "timestamp": "2031-05-12T09:25:30.435Z"
+        },
+        {
+          "event_id": "EVT-B-PLN-0009",
+          "label": "i3_msg740_ack",
+          "source_file": "data/synthetic/node_B/planning.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:25:30.691Z"
+        },
+        {
+          "event_id": "EVT-C-PLN-0008",
+          "label": "i3_msg741_recv",
+          "source_file": "data/synthetic/node_C/planning.log",
+          "source_line": 8,
+          "timestamp": "2031-05-12T09:25:30.697Z"
+        },
+        {
+          "event_id": "EVT-C-PLN-0009",
+          "label": "i3_msg741_ack",
+          "source_file": "data/synthetic/node_C/planning.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:25:30.877Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0014",
+          "label": "i3_msg740_done",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 14,
+          "timestamp": "2031-05-12T09:25:30.944Z"
+        },
+        {
+          "event_id": "EVT-A-PLN-0015",
+          "label": "i3_msg741_done",
+          "source_file": "data/synthetic/node_A/planning.log",
+          "source_line": 15,
+          "timestamp": "2031-05-12T09:25:31.128Z"
+        },
+        {
+          "event_id": "EVT-A-STA-0007",
+          "label": "i3_s_A_end",
+          "source_file": "data/synthetic/node_A/state.log",
+          "source_line": 7,
+          "timestamp": "2031-05-12T09:25:40.300Z"
+        },
+        {
+          "event_id": "EVT-C-STA-0009",
+          "label": "i3_s_C_end",
+          "source_file": "data/synthetic/node_C/state.log",
+          "source_line": 9,
+          "timestamp": "2031-05-12T09:25:40.350Z"
+        }
+      ],
+      "primary_fault": null,
+      "secondary_faults": [],
+      "recovery_event": null,
+      "expected_relationship_ids": [
+        "REL-068",
+        "REL-069",
+        "REL-070",
+        "REL-071",
+        "REL-072",
+        "REL-073",
+        "REL-074",
+        "REL-075",
+        "REL-076",
+        "REL-077",
+        "REL-078",
+        "REL-079",
+        "REL-080",
+        "REL-081",
+        "REL-082"
+      ],
+      "repeated_events": [],
+      "simultaneous_events": [
+        {
+          "description": "Near-simultaneous plan-sync sends from NODE_A to NODE_B and NODE_C (within 500 ms)",
+          "event_ids": [
+            "EVT-A-PLN-0012",
+            "EVT-A-PLN-0013"
+          ],
+          "tolerance_ms": 500
+        }
+      ],
+      "intentionally_missing_events": [],
+      "malformed_records": [],
+      "unrelated_events_nearby": [
+        {
+          "event_id": "EVT-C-FLT-0006",
+          "label": "u3_f_C_warn",
+          "source_file": "data/synthetic/node_C/fault_recovery.log",
+          "source_line": 6,
+          "timestamp": "2031-05-12T09:25:55.000Z"
+        },
+        {
+          "event_id": "EVT-B-OPR-0006",
+          "label": "u3_op_B_query",
+          "source_file": "data/synthetic/node_B/operator.log",
+          "source_line": 6,
+          "timestamp": "2031-05-12T09:25:34.600Z"
+        }
+      ],
+      "relationships_that_should_not_be_inferred": [
+        {
+          "source": {
+            "event_id": "EVT-C-FLT-0006",
+            "label": "u3_f_C_warn",
+            "source_file": "data/synthetic/node_C/fault_recovery.log",
+            "source_line": 6,
+            "timestamp": "2031-05-12T09:25:55.000Z"
+          },
+          "target": {
+            "event_id": "EVT-C-GDN-0010",
+            "label": "i3_g_C_applied",
+            "source_file": "data/synthetic/node_C/guidance.log",
+            "source_line": 10,
+            "timestamp": "2031-05-12T09:25:12.300Z"
+          },
+          "why": "A 1-second self-cleared transient warning is not a fault incident and not linked to the setpoint step."
+        },
+        {
+          "source": {
+            "event_id": "EVT-A-OPR-0007",
+            "label": "i3_op_cmd",
+            "source_file": "data/synthetic/node_A/operator.log",
+            "source_line": 7,
+            "timestamp": "2031-05-12T09:25:10.200Z"
+          },
+          "target": {
+            "event_id": "EVT-C-FLT-0006",
+            "label": "u3_f_C_warn",
+            "source_file": "data/synthetic/node_C/fault_recovery.log",
+            "source_line": 6,
+            "timestamp": "2031-05-12T09:25:55.000Z"
+          },
+          "why": "Routine command is not related to the transient bus retry."
+        }
+      ],
+      "uncertainty_examples": {
+        "CONFIRMED_OBSERVATION": [
+          {
+            "claim": "CMD-1030 completed normally with a full SENT->RECV->ACK->APPLIED->COMPLETE sequence.",
+            "evidence": [
+              "EVT-A-GDN-0009",
+              "EVT-C-GDN-0009",
+              "EVT-A-GDN-0010"
+            ]
+          }
+        ]
+      },
+      "notes": "Must NOT be reported as a fault incident. It is the control group for the 'normal vs incident' decision and for complete-sequence detection."
+    }
+  ],
+  "background_features": {
+    "repeated_event_groups": [
+      {
+        "description": "Periodic SELFTEST_PASS on each node (cycle 1..15)",
+        "event_ids": {
+          "NODE_A": [
+            "EVT-A-FLT-0001",
+            "EVT-A-FLT-0002",
+            "EVT-A-FLT-0004",
+            "EVT-A-FLT-0005",
+            "EVT-A-FLT-0006",
+            "EVT-A-FLT-0007",
+            "EVT-A-FLT-0008",
+            "EVT-A-FLT-0012",
+            "EVT-A-FLT-0014",
+            "EVT-A-FLT-0015",
+            "EVT-A-FLT-0016",
+            "EVT-A-FLT-0018",
+            "EVT-A-FLT-0019",
+            "EVT-A-FLT-0020",
+            "EVT-A-FLT-0021"
+          ],
+          "NODE_B": [
+            "EVT-B-FLT-0001",
+            "EVT-B-FLT-0002",
+            "EVT-B-FLT-0003",
+            "EVT-B-FLT-0004",
+            "EVT-B-FLT-0006",
+            "EVT-B-FLT-0007",
+            "EVT-B-FLT-0013",
+            "EVT-B-FLT-0014",
+            "EVT-B-FLT-0015",
+            "EVT-B-FLT-0016",
+            "EVT-B-FLT-0017",
+            "EVT-B-FLT-0018",
+            "EVT-B-FLT-0020",
+            "EVT-B-FLT-0021"
+          ],
+          "NODE_C": [
+            "EVT-C-FLT-0001",
+            "EVT-C-FLT-0002",
+            "EVT-C-FLT-0003",
+            "EVT-C-FLT-0004",
+            "EVT-C-FLT-0005",
+            "EVT-C-FLT-0007",
+            "EVT-C-FLT-0008",
+            "EVT-C-FLT-0015",
+            "EVT-C-FLT-0016",
+            "EVT-C-FLT-0017",
+            "EVT-C-FLT-0018",
+            "EVT-C-FLT-0022",
+            "EVT-C-FLT-0023",
+            "EVT-C-FLT-0024",
+            "EVT-C-FLT-0025"
+          ]
+        }
+      },
+      {
+        "description": "Periodic GUIDANCE_STATUS heartbeat (hb 1..9)",
+        "event_ids": {
+          "NODE_A": [
+            "EVT-A-GDN-0002",
+            "EVT-A-GDN-0005",
+            "EVT-A-GDN-0008",
+            "EVT-A-GDN-0014",
+            "EVT-A-GDN-0017",
+            "EVT-A-GDN-0020",
+            "EVT-A-GDN-0024",
+            "EVT-A-GDN-0028",
+            "EVT-A-GDN-0031"
+          ],
+          "NODE_B": [
+            "EVT-B-GDN-0002",
+            "EVT-B-GDN-0005",
+            "EVT-B-GDN-0008",
+            "EVT-B-GDN-0012",
+            "EVT-B-GDN-0023",
+            "EVT-B-GDN-0027",
+            "EVT-B-GDN-0030",
+            "EVT-B-GDN-0033"
+          ],
+          "NODE_C": [
+            "EVT-C-GDN-0002",
+            "EVT-C-GDN-0005",
+            "EVT-C-GDN-0011",
+            "EVT-C-GDN-0015",
+            "EVT-C-GDN-0021",
+            "EVT-C-GDN-0024",
+            "EVT-C-GDN-0030",
+            "EVT-C-GDN-0033",
+            "EVT-C-GDN-0036"
+          ]
+        }
+      }
+    ],
+    "simultaneous_events": [
+      {
+        "description": "WAYPOINT_REACHED WP-005 on NODE_A and NODE_C share the exact millisecond",
+        "event_ids": [
+          "EVT-A-GDN-0007",
+          "EVT-C-GDN-0007"
+        ],
+        "timestamp": "2031-05-12T09:20:30.000Z"
+      },
+      {
+        "description": "PHASE_CHANGE CLIMB->CRUISE on NODE_A and NODE_C share the exact millisecond",
+        "event_ids": [
+          "EVT-A-STA-0004",
+          "EVT-C-STA-0006"
+        ],
+        "timestamp": "2031-05-12T09:20:00.000Z"
+      }
+    ],
+    "intentionally_missing_events": [
+      {
+        "description": "NODE_B never logs WAYPOINT_REACHED WP-012 (NODE_A and NODE_C do) - background gap unrelated to any incident",
+        "absence_check": {
+          "node": "NODE_B",
+          "log_family": "guidance",
+          "event_type": "WAYPOINT_REACHED",
+          "key": "wp=WP-012"
+        }
+      }
+    ],
+    "malformed_records_not_in_incidents": [
+      {
+        "source_file": "data/synthetic/node_A/planning.log",
+        "source_line": 7,
+        "reason": "incomplete_fields",
+        "raw_record": "2031-05-12 09:15:40.169,NODE_A,MESSAGE_SENT,PLN-301",
+        "probable_original": {
+          "timestamp": "2031-05-12T09:15:40.169Z",
+          "node": "NODE_A",
+          "log_family": "planning",
+          "event_type": "MESSAGE_SENT",
+          "message": "periodic status plan sync"
+        }
+      },
+      {
+        "source_file": "data/synthetic/node_A/state.log",
+        "source_line": 16,
+        "reason": "invalid_separator",
+        "raw_record": "20310512T095030.342Z,NODE_A,CONDITION_SAMPLE,NAV_ENV,-,-,-,115,alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE",
+        "probable_original": {
+          "timestamp": "2031-05-12T09:50:30.342Z",
+          "node": "NODE_A",
+          "log_family": "state",
+          "event_type": "CONDITION_SAMPLE",
+          "message": "alt_band=L5 spd_band=S3 fuel_state=OK link=UP phase=CRUISE"
+        }
+      },
+      {
+        "source_file": "data/synthetic/node_B/operator.log",
+        "source_line": 4,
+        "reason": "incomplete_key_value_pair_and_unterminated_quote",
+        "raw_record": "[ts=2031-05-12T09:12:44.800Z][node=NODE_B][sev=INFO] op=OP-03 action=STATUS_QUERY cmd_id component=NAV_FILTER msg=\"Operator quer",
+        "probable_original": {
+          "timestamp": "2031-05-12T09:12:44.800Z",
+          "node": "NODE_B",
+          "log_family": "operator",
+          "event_type": "STATUS_QUERY",
+          "message": "Operator queried status of NAV_FILTER"
+        }
+      },
+      {
+        "source_file": "data/synthetic/node_B/guidance.log",
+        "source_line": 21,
+        "reason": "corrupted_timestamp_token",
+        "raw_record": "1936X45517.731 NODE_B GDN evt=GUIDANCE_STATUS sev=INFO comp=GUIDANCE_CORE mode=NOMINAL hb=5 note=periodic_guidance_status",
+        "probable_original": {
+          "timestamp": "2031-05-12T09:45:17.731Z",
+          "node": "NODE_B",
+          "log_family": "guidance",
+          "event_type": "GUIDANCE_STATUS",
+          "message": "periodic guidance status"
+        }
+      },
+      {
+        "source_file": "data/synthetic/node_B/fault_recovery.log",
+        "source_line": 5,
+        "reason": "invalid_separator",
+        "raw_record": "2031-05-12T09:24:47Z;NODE_B;SELFTEST_PASS;ST-001;SELFTEST;NAV_FILTER;INFO;-;-;self test passed cycle 5",
+        "probable_original": {
+          "timestamp": "2031-05-12T09:24:47.000Z",
+          "node": "NODE_B",
+          "log_family": "fault_recovery",
+          "event_type": "SELFTEST_PASS",
+          "message": "self test passed cycle 5"
+        }
+      },
+      {
+        "source_file": "data/synthetic/node_C/planning.log",
+        "source_line": 14,
+        "reason": "missing_timestamp",
+        "raw_record": ",NODE_C,PLAN_REFRESH,PLN-203,,,,,,PLAN_CACHE,OK,periodic plan cache refresh",
+        "probable_original": {
+          "timestamp": "2031-05-12T09:47:09.122Z",
+          "node": "NODE_C",
+          "log_family": "planning",
+          "event_type": "PLAN_REFRESH",
+          "message": "periodic plan cache refresh"
+        }
+      },
+      {
+        "source_file": "data/synthetic/node_C/guidance.log",
+        "source_line": 34,
+        "reason": "truncated_record",
+        "raw_record": "1936347505.775 NODE_C GDN evt=WAYPOINT_",
+        "probable_original": {
+          "timestamp": "2031-05-12T10:18:25.775Z",
+          "node": "NODE_C",
+          "log_family": "guidance",
+          "event_type": "WAYPOINT_REACHED",
+          "message": "waypoint 18 reached"
+        }
+      },
+      {
+        "source_file": "data/synthetic/node_C/state.log",
+        "source_line": 18,
+        "reason": "incomplete_fields",
+        "raw_record": "20310512T100830.000Z;NODE_C;STATE_CHANGE;SENSOR_BUS;NOMINAL",
+        "probable_original": {
+          "timestamp": "2031-05-12T10:08:30.000Z",
+          "node": "NODE_C",
+          "log_family": "state",
+          "event_type": "STATE_CHANGE",
+          "message": "bus retry started"
+        }
+      }
+    ],
+    "lost_record_side_effects": [
+      "MSG-703 (NODE_A->NODE_B): the SENT record on NODE_A is malformed, but RECEIVED/ACK/COMPLETE exist -> sender side must be flagged as missing/unparseable.",
+      "NODE_A state seq has a gap where the malformed CONDITION_SAMPLE was; NODE_C SENSOR_BUS RETRY->NOMINAL at ~10:08:31 has no preceding NOMINAL->RETRY (its first half is malformed)."
+    ],
+    "out_of_order_records": [
+      {
+        "file": "data/synthetic/node_A/planning.log",
+        "moved_event_id": "EVT-A-PLN-0019",
+        "placed": "after",
+        "relative_to_event_id": "EVT-A-PLN-0018",
+        "note": "file order differs from timestamp order"
+      },
+      {
+        "file": "data/synthetic/node_B/guidance.log",
+        "moved_event_id": "EVT-B-GDN-0018",
+        "placed": "after",
+        "relative_to_event_id": "EVT-B-GDN-0017",
+        "note": "file order differs from timestamp order"
+      },
+      {
+        "file": "data/synthetic/node_C/state.log",
+        "moved_event_id": "EVT-C-STA-0013",
+        "placed": "after",
+        "relative_to_event_id": "EVT-C-STA-0012",
+        "note": "file order differs from timestamp order"
+      },
+      {
+        "file": "data/synthetic/node_A/fault_recovery.log",
+        "moved_event_id": "EVT-A-FLT-0009",
+        "placed": "before",
+        "relative_to_event_id": "EVT-A-FLT-0010",
+        "note": "file order differs from timestamp order"
+      }
+    ]
+  }
+}

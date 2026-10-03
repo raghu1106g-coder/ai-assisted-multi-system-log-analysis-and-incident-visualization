@@ -1,0 +1,230 @@
+{
+  "_notice": "SYNTHETIC PROTOTYPE - not the official PS3 dataset or schema. Field names are a suggestion; replace when the official dataset/schema is released.",
+  "_parsing_rules": {
+    "timestamp": "normalise every family to ISO-8601 UTC with milliseconds; fault_recovery is second-resolution (timestamp_precision='s')",
+    "event_id": "EVT-<node letter>-<family code OPR|PLN|GDN|STA|FLT>-<4-digit source line>",
+    "severity": "taken from the record when present (operator, guidance, fault_recovery); derived for planning (status FAILED/TIMEOUT=ERROR) and state (to-state DEGRADED/TIMEOUT/RETRY=WARN)",
+    "incident_hint": "first correlation key found in the record (CMD/MSG/FLT/RCV/SP/PLN id). It is derived from the raw record only and is NOT the ground-truth incident id.",
+    "entity": "primary identifier of the record (code > msg > ack_for > cmd > sp > plan > wp > alert > component)"
+  },
+  "examples": [
+    {
+      "event_id": "EVT-A-OPR-0008",
+      "timestamp": "2031-05-12T09:41:02.120Z",
+      "node": "NODE_A",
+      "log_family": "operator",
+      "event_type": "SUBMIT_COMMAND",
+      "severity": "INFO",
+      "component": "ROUTE_MGR",
+      "entity": "CMD-1042",
+      "incident_hint": "CMD-1042",
+      "message": "Operator requested alternate route profile ALT-2",
+      "source_file": "data/synthetic/node_A/operator.log",
+      "source_line": 8,
+      "raw_record": "[ts=2031-05-12T09:41:02.120Z][node=NODE_A][sev=INFO] op=OP-07 action=SUBMIT_COMMAND cmd_id=CMD-1042 attempt=1 component=ROUTE_MGR msg=\"Operator requested alternate route profile ALT-2\"",
+      "category": "COMMAND",
+      "timestamp_precision": "ms",
+      "attributes": {
+        "op": "OP-07",
+        "cmd": "CMD-1042",
+        "attempt": "1"
+      }
+    },
+    {
+      "event_id": "EVT-A-PLN-0018",
+      "timestamp": "2031-05-12T09:41:06.350Z",
+      "node": "NODE_A",
+      "log_family": "planning",
+      "event_type": "MESSAGE_SENT",
+      "severity": "INFO",
+      "component": "PLAN_SYNC",
+      "entity": "MSG-771",
+      "incident_hint": "MSG-771",
+      "message": "plan PLN-310 distributed to peer",
+      "source_file": "data/synthetic/node_A/planning.log",
+      "source_line": 18,
+      "raw_record": "2031-05-12 09:41:06.350,NODE_A,MESSAGE_SENT,PLN-310,MSG-771,NODE_B,,,,PLAN_SYNC,SENT,plan PLN-310 distributed to peer",
+      "category": "MESSAGE",
+      "timestamp_precision": "ms",
+      "attributes": {
+        "plan": "PLN-310",
+        "msg": "MSG-771",
+        "peer": "NODE_B",
+        "status": "SENT"
+      }
+    },
+    {
+      "event_id": "EVT-B-PLN-0011",
+      "timestamp": "2031-05-12T09:41:06.700Z",
+      "node": "NODE_B",
+      "log_family": "planning",
+      "event_type": "MESSAGE_RECEIVED",
+      "severity": "INFO",
+      "component": "PLAN_SYNC",
+      "entity": "MSG-771",
+      "incident_hint": "MSG-771",
+      "message": "plan PLN-310 received",
+      "source_file": "data/synthetic/node_B/planning.log",
+      "source_line": 11,
+      "raw_record": "2031-05-12 09:41:06.700,NODE_B,MESSAGE_RECEIVED,PLN-310,MSG-771,NODE_A,,,,PLAN_SYNC,RECEIVED,plan PLN-310 received",
+      "category": "MESSAGE",
+      "timestamp_precision": "ms",
+      "attributes": {
+        "plan": "PLN-310",
+        "msg": "MSG-771",
+        "peer": "NODE_A",
+        "status": "RECEIVED"
+      }
+    },
+    {
+      "event_id": "EVT-B-GDN-0015",
+      "timestamp": "2031-05-12T09:41:08.300Z",
+      "node": "NODE_B",
+      "log_family": "guidance",
+      "event_type": "GUIDANCE_DEVIATION",
+      "severity": "WARN",
+      "component": "NAV_FILTER",
+      "entity": "NAV_FILTER",
+      "incident_hint": null,
+      "message": "cross track error above soft limit",
+      "source_file": "data/synthetic/node_B/guidance.log",
+      "source_line": 15,
+      "raw_record": "1936345268.300 NODE_B GDN evt=GUIDANCE_DEVIATION sev=WARN comp=NAV_FILTER xte=0.82 note=cross_track_error_above_soft_limit",
+      "category": "ANOMALY",
+      "timestamp_precision": "ms",
+      "attributes": {
+        "xte": "0.82"
+      }
+    },
+    {
+      "event_id": "EVT-B-GDN-0014",
+      "timestamp": "2031-05-12T09:41:07.250Z",
+      "node": "NODE_B",
+      "log_family": "guidance",
+      "event_type": "PROFILE_APPLY",
+      "severity": "INFO",
+      "component": "NAV_FILTER",
+      "entity": "PLN-310",
+      "incident_hint": "PLN-310",
+      "message": "profile applied from received plan",
+      "source_file": "data/synthetic/node_B/guidance.log",
+      "source_line": 14,
+      "raw_record": "1936345267.250 NODE_B GDN evt=PROFILE_APPLY sev=INFO comp=NAV_FILTER plan=PLN-310 note=profile_applied_from_received_plan",
+      "category": "GUIDANCE",
+      "timestamp_precision": "ms",
+      "attributes": {
+        "plan": "PLN-310"
+      }
+    },
+    {
+      "event_id": "EVT-A-STA-0010",
+      "timestamp": "2031-05-12T09:41:02.480Z",
+      "node": "NODE_A",
+      "log_family": "state",
+      "event_type": "STATE_CHANGE",
+      "severity": "INFO",
+      "component": "ROUTE_MGR",
+      "entity": "ROUTE_MGR",
+      "incident_hint": "CMD-1042",
+      "message": "replanning started",
+      "source_file": "data/synthetic/node_A/state.log",
+      "source_line": 10,
+      "raw_record": "20310512T094102.480Z;NODE_A;STATE_CHANGE;ROUTE_MGR;IDLE;REPLANNING;CMD-1042;109;replanning started",
+      "category": "STATE_CHANGE",
+      "timestamp_precision": "ms",
+      "attributes": {
+        "frm": "IDLE",
+        "to": "REPLANNING",
+        "trigger": "CMD-1042",
+        "seq": "109"
+      }
+    },
+    {
+      "event_id": "EVT-A-STA-0004",
+      "timestamp": "2031-05-12T09:20:00.000Z",
+      "node": "NODE_A",
+      "log_family": "state",
+      "event_type": "PHASE_CHANGE",
+      "severity": "INFO",
+      "component": "FLIGHT_PHASE",
+      "entity": "FLIGHT_PHASE",
+      "incident_hint": null,
+      "message": "phase transition CLIMB to CRUISE",
+      "source_file": "data/synthetic/node_A/state.log",
+      "source_line": 4,
+      "raw_record": "20310512T092000.000Z;NODE_A;PHASE_CHANGE;FLIGHT_PHASE;CLIMB;CRUISE;-;103;phase transition CLIMB to CRUISE",
+      "category": "PHASE",
+      "timestamp_precision": "ms",
+      "attributes": {
+        "frm": "CLIMB",
+        "to": "CRUISE",
+        "seq": "103"
+      }
+    },
+    {
+      "event_id": "EVT-B-FLT-0009",
+      "timestamp": "2031-05-12T09:41:09.000Z",
+      "node": "NODE_B",
+      "log_family": "fault_recovery",
+      "event_type": "FAULT_RAISED",
+      "severity": "ERROR",
+      "component": "NAV_FILTER",
+      "entity": "FLT-2207",
+      "incident_hint": "FLT-2207",
+      "message": "residual above divergence limit",
+      "source_file": "data/synthetic/node_B/fault_recovery.log",
+      "source_line": 9,
+      "raw_record": "2031-05-12T09:41:09Z|NODE_B|FAULT_RAISED|FLT-2207|NAV_FILTER_DIVERGENCE|NAV_FILTER|ERROR|-|-|residual above divergence limit",
+      "category": "FAULT",
+      "timestamp_precision": "s",
+      "attributes": {
+        "code": "FLT-2207",
+        "name": "NAV_FILTER_DIVERGENCE"
+      }
+    },
+    {
+      "event_id": "EVT-C-FLT-0009",
+      "timestamp": "2031-05-12T09:41:16.000Z",
+      "node": "NODE_C",
+      "log_family": "fault_recovery",
+      "event_type": "FAULT_RAISED",
+      "severity": "ERROR",
+      "component": "PLAN_SYNC",
+      "entity": "FLT-2210",
+      "incident_hint": "FLT-2210",
+      "message": "sync timer expired (10s) for MSG-772",
+      "source_file": "data/synthetic/node_C/fault_recovery.log",
+      "source_line": 9,
+      "raw_record": "2031-05-12T09:41:16Z|NODE_C|FAULT_RAISED|FLT-2210|PLAN_SYNC_TIMEOUT|PLAN_SYNC|ERROR|MSG-772|-|sync timer expired (10s) for MSG-772",
+      "category": "FAULT",
+      "timestamp_precision": "s",
+      "attributes": {
+        "related": "MSG-772",
+        "code": "FLT-2210",
+        "name": "PLAN_SYNC_TIMEOUT"
+      }
+    },
+    {
+      "event_id": "EVT-B-FLT-0011",
+      "timestamp": "2031-05-12T09:41:21.000Z",
+      "node": "NODE_B",
+      "log_family": "fault_recovery",
+      "event_type": "RECOVERY_STARTED",
+      "severity": "INFO",
+      "component": "NAV_FILTER",
+      "entity": "RCV-55",
+      "incident_hint": "RCV-55",
+      "message": "filter reinit scheduled",
+      "source_file": "data/synthetic/node_B/fault_recovery.log",
+      "source_line": 11,
+      "raw_record": "2031-05-12T09:41:21Z|NODE_B|RECOVERY_STARTED|RCV-55|FILTER_REINIT|NAV_FILTER|INFO|FLT-2207|-|filter reinit scheduled",
+      "category": "RECOVERY",
+      "timestamp_precision": "s",
+      "attributes": {
+        "code": "RCV-55",
+        "name": "FILTER_REINIT",
+        "related": "FLT-2207"
+      }
+    }
+  ]
+}
