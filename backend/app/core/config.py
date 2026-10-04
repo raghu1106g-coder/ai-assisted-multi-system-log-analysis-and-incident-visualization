@@ -52,6 +52,10 @@ class Settings(BaseSettings):
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
 
     @property
+    def project_root(self) -> Path:
+        return Path(__file__).parent.parent.parent.resolve()
+
+    @property
     def duckdb_path_resolved(self) -> Path:
         p = Path(self.duckdb_path)
         if not p.is_absolute():
@@ -65,6 +69,7 @@ class Settings(BaseSettings):
         if not p.is_absolute():
             p = Path(__file__).parent.parent.parent / p
         return p.resolve()
+
 
 
 _settings: Settings | None = None

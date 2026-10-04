@@ -22,9 +22,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, onChange, onReset
 
   return (
     <div className="ops-panel" style={{ padding: '8px 12px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#38bdf8', fontSize: '0.78rem', fontWeight: 700 }}>
-        <Filter size={13} />
-        <span style={{ textTransform: 'uppercase', letterSpacing: '0.04em' }}>Filter:</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'var(--text-muted)', fontSize: '0.72rem', fontWeight: 700 }}>
+        <Filter size={12} color="var(--text-accent)" />
+        <span style={{ textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-accent)' }}>Filters</span>
       </div>
 
       {/* Free Search */}
@@ -113,7 +113,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, onChange, onReset
         <button
           className="btn-ops btn-ops-ghost"
           onClick={onReset}
-          style={{ fontSize: '0.74rem', padding: '3px 7px', color: '#f87171' }}
+          style={{ fontSize: '0.72rem', padding: '3px 7px', color: 'var(--status-critical)' }}
           title="Reset all active filters"
         >
           <RotateCcw size={11} /> Reset

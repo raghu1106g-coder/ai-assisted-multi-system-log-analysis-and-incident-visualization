@@ -78,7 +78,7 @@ class GuidanceParser(BaseLogParser):
             raise ParseError(f"bad_prefix: expected GDN, got {tokens[2]!r}")
 
         # Convert epoch to UTC datetime
-        ts = datetime.utcfromtimestamp(epoch_float).replace(tzinfo=timezone.utc)
+        ts = datetime.fromtimestamp(epoch_float, tz=timezone.utc)
 
         # Parse k=v tokens from position 3 onward
         rest = " ".join(tokens[3:])

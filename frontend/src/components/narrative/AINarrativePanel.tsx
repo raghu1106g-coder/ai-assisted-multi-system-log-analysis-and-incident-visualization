@@ -55,10 +55,11 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
       {/* Header */}
       <div className="ops-panel-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <FileText size={15} color="#c084fc" />
-          <span style={{ fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-            AI Engineering Investigation Brief • {incident.incident_id}
+          <Sparkles size={14} color="var(--text-accent)" />
+          <span className="panel-title">
+            Incident Narrative
           </span>
+          <span className="font-mono text-2xs text-muted">{incident.incident_id}</span>
         </div>
 
         <button
@@ -94,9 +95,9 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
         )}
 
         {/* Deterministic Reconstructed Overview */}
-        <div className="ops-panel-subtle" style={{ padding: '12px 14px' }}>
+        <div className="ops-panel-subtle" style={{ padding: '12px 14px', background: '#ffffff', border: '1px solid var(--border-subtle)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '6px' }}>
-            <span className="text-xs" style={{ fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase' }}>
+            <span className="text-xs" style={{ fontWeight: 700, color: '#0284c7', textTransform: 'uppercase' }}>
               Deterministic Finding: {incident.title}
             </span>
             <span className="ops-badge ops-badge-nominal">DETERMINISTIC RECONSTRUCTION</span>
@@ -114,13 +115,13 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
             </div>
             <div className="text-xs">
               <span className="text-muted">Faults: </span>
-              <span className="font-mono" style={{ color: '#f87171', fontWeight: 600 }}>
+              <span className="font-mono" style={{ color: '#dc2626', fontWeight: 600 }}>
                 {incident.primary_faults.length > 0 ? incident.primary_faults.join(', ') : 'None'}
               </span>
             </div>
             <div className="text-xs">
               <span className="text-muted">Status: </span>
-              <span className="font-mono" style={{ color: '#34d399', fontWeight: 600 }}>
+              <span className="font-mono" style={{ color: '#059669', fontWeight: 600 }}>
                 {incident.recovery_status || 'UNKNOWN'}
               </span>
             </div>
@@ -131,8 +132,8 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
         {narrative ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {/* Executive Summary */}
-            <div className="ops-panel-subtle" style={{ padding: '12px 14px', borderLeft: '3px solid #38bdf8' }}>
-              <div style={{ fontWeight: 700, fontSize: '0.78rem', textTransform: 'uppercase', color: '#38bdf8', marginBottom: '4px' }}>
+            <div className="ops-panel-subtle" style={{ padding: '12px 14px', borderLeft: '3px solid #0284c7', background: '#f0f9ff' }}>
+              <div style={{ fontWeight: 700, fontSize: '0.78rem', textTransform: 'uppercase', color: '#0369a1', marginBottom: '4px' }}>
                 Executive Incident Synthesis
               </div>
               <p className="text-xs text-primary" style={{ lineHeight: 1.55 }}>
@@ -144,8 +145,8 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
             {narrative.observations && narrative.observations.length > 0 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <CheckCircle2 size={13} color="#34d399" />
-                  <span style={{ fontWeight: 700, fontSize: '0.76rem', textTransform: 'uppercase', color: '#34d399', letterSpacing: '0.04em' }}>
+                  <CheckCircle2 size={13} color="#059669" />
+                  <span style={{ fontWeight: 700, fontSize: '0.76rem', textTransform: 'uppercase', color: '#047857', letterSpacing: '0.04em' }}>
                     Confirmed Facts (Direct Grounding)
                   </span>
                 </div>
@@ -155,7 +156,7 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
                     <div
                       key={idx}
                       className="ops-panel-subtle"
-                      style={{ padding: '8px 10px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}
+                      style={{ padding: '8px 10px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', background: '#ffffff' }}
                     >
                       <div className="text-xs text-secondary" style={{ flex: 1, lineHeight: 1.45 }}>
                         • {obs.statement}
@@ -168,7 +169,7 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
                               key={refId}
                               onClick={() => onSelectEventById?.(refId)}
                               className="btn-ops btn-ops-ghost font-mono text-xs"
-                              style={{ padding: '1px 5px', fontSize: '0.68rem', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.2)' }}
+                              style={{ padding: '1px 5px', fontSize: '0.68rem', color: '#0284c7', border: '1px solid #bae6fd', background: '#eff6ff' }}
                               title={`Inspect source evidence for ${refId}`}
                             >
                               <ExternalLink size={10} /> {refId}
@@ -186,8 +187,8 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
             {narrative.possible_relationships && narrative.possible_relationships.length > 0 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <AlertTriangle size={13} color="#fbbf24" />
-                  <span style={{ fontWeight: 700, fontSize: '0.76rem', textTransform: 'uppercase', color: '#fbbf24', letterSpacing: '0.04em' }}>
+                  <AlertTriangle size={13} color="#d97706" />
+                  <span style={{ fontWeight: 700, fontSize: '0.76rem', textTransform: 'uppercase', color: '#b45309', letterSpacing: '0.04em' }}>
                     Possible / Inferred Relationships (Uncertainty Explicit)
                   </span>
                 </div>
@@ -197,7 +198,7 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
                     <div
                       key={idx}
                       className="ops-panel-subtle"
-                      style={{ padding: '8px 10px', borderLeft: '2px solid #fbbf24', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}
+                      style={{ padding: '8px 10px', borderLeft: '2px solid #f59e0b', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', background: '#ffffff' }}
                     >
                       <div className="text-xs text-secondary" style={{ flex: 1, lineHeight: 1.45 }}>
                         {rel.description}
@@ -210,7 +211,7 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
                               key={refId}
                               onClick={() => onSelectEventById?.(refId)}
                               className="btn-ops btn-ops-ghost font-mono text-xs"
-                              style={{ padding: '1px 5px', fontSize: '0.68rem', color: '#fbbf24', border: '1px solid rgba(251, 191, 36, 0.2)' }}
+                              style={{ padding: '1px 5px', fontSize: '0.68rem', color: '#d97706', border: '1px solid #fde68a', background: '#fffbeb' }}
                               title={`Inspect evidence for ${refId}`}
                             >
                               <ExternalLink size={10} /> {refId}
@@ -239,7 +240,7 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
                     <div
                       key={idx}
                       className="ops-panel-subtle"
-                      style={{ padding: '8px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}
+                      style={{ padding: '8px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', background: '#ffffff' }}
                     >
                       <div className="text-xs text-muted" style={{ lineHeight: 1.45 }}>
                         • {unc.description}
@@ -255,8 +256,8 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
 
             {/* Recovery Summary */}
             {narrative.recovery_summary && (
-              <div className="ops-panel-subtle" style={{ padding: '10px 12px', borderLeft: '2px solid #34d399' }}>
-                <div style={{ fontWeight: 700, fontSize: '0.76rem', textTransform: 'uppercase', color: '#34d399', marginBottom: '2px' }}>
+              <div className="ops-panel-subtle" style={{ padding: '10px 12px', borderLeft: '2px solid #059669', background: '#ecfdf5' }}>
+                <div style={{ fontWeight: 700, fontSize: '0.76rem', textTransform: 'uppercase', color: '#047857', marginBottom: '2px' }}>
                   Recovery & Resolution Summary
                 </div>
                 <p className="text-xs text-secondary" style={{ lineHeight: 1.5 }}>
@@ -268,10 +269,10 @@ export const AINarrativePanel: React.FC<AINarrativePanelProps> = ({
         ) : (
           <div
             className="ops-panel-subtle"
-            style={{ padding: '24px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+            style={{ padding: '24px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', background: '#ffffff' }}
           >
-            <Sparkles size={20} color="#c084fc" style={{ opacity: 0.8 }} />
-            <div className="text-xs text-muted" style={{ maxWidth: '400px' }}>
+            <Sparkles size={20} color="#0284c7" style={{ opacity: 0.8 }} />
+            <div className="text-xs text-muted" style={{ maxWidth: '420px' }}>
               Click <strong>Generate Synthesis</strong> to run AI-assisted structured hypothesis verification and uncertainty analysis against the normalized log graph.
             </div>
           </div>

@@ -87,7 +87,7 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
             onClick={() => copyToClipboard(event.event_id, 'eid')}
             title="Copy Event ID"
           >
-            {copiedKey === 'eid' ? <Check size={12} color="#34d399" /> : <Copy size={12} />}
+            {copiedKey === 'eid' ? <Check size={12} color="#059669" /> : <Copy size={12} />}
             <span className="font-mono text-xs">{event.event_id}</span>
           </button>
           {onClose && (
@@ -111,36 +111,58 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
         </div>
 
         {/* Level 4: Source Line Traceability Box */}
-        <div className="ops-panel-subtle" style={{ padding: '10px 12px', borderLeft: '3px solid #38bdf8' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#38bdf8', fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.03em' }}>
+        <div
+          style={{
+            padding: '10px 12px',
+            borderLeft: '3px solid var(--text-accent)',
+            background: 'var(--status-info-bg)',
+            border: '1px solid var(--status-info-border)',
+            borderLeftWidth: '3px',
+            borderLeftColor: 'var(--text-accent)',
+            borderRadius: 'var(--radius-sm)',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '7px' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                color: 'var(--text-accent)',
+              }}
+            >
               <FileCode size={13} />
-              <span>Ground Truth Source Traceability</span>
+              <span className="section-label" style={{ color: 'var(--text-accent)' }}>Level 4 · Source Traceability</span>
             </div>
 
             <button
-              className="btn-ops btn-ops-ghost font-mono text-xs"
+              className="btn-ops btn-ops-ghost font-mono"
               onClick={() => copyToClipboard(`${event.source_file}:${event.source_line}`, 'src')}
-              style={{ padding: '1px 5px', fontSize: '0.68rem' }}
+              style={{
+                padding: '1px 7px',
+                fontSize: '0.67rem',
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--status-info-border)',
+              }}
               title="Copy file:line"
             >
-              {copiedKey === 'src' ? <Check size={11} color="#34d399" /> : <Copy size={11} />}
+              {copiedKey === 'src' ? <Check size={11} color="var(--status-nominal)" /> : <Copy size={11} />}
               <span>Copy</span>
             </button>
           </div>
 
-          <div className="font-mono text-xs" style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-            <div>
-              <span className="text-muted">File: </span>
-              <span style={{ color: 'var(--text-primary)' }}>{event.source_file}</span>
+          <div className="font-mono" style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.72rem' }}>
+            <div className="evidence-coord">
+              <span className="evidence-coord-label">File</span>
+              <span className="evidence-coord-value">{event.source_file}</span>
             </div>
-            <div>
-              <span className="text-muted">Line: </span>
-              <span style={{ color: '#38bdf8', fontWeight: 700 }}>Line {event.source_line}</span>
+            <div className="evidence-coord">
+              <span className="evidence-coord-label">Line</span>
+              <span className="evidence-coord-value" style={{ color: 'var(--text-accent)', fontWeight: 700 }}>L{event.source_line}</span>
             </div>
-            <div>
-              <span className="text-muted">UTC Timestamp: </span>
-              <span style={{ color: 'var(--text-secondary)' }}>{formattedTime}</span>
+            <div className="evidence-coord">
+              <span className="evidence-coord-label">UTC Timestamp</span>
+              <span className="evidence-coord-value">{formattedTime}</span>
             </div>
           </div>
         </div>
@@ -154,9 +176,9 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
             <button
               className="btn-ops btn-ops-ghost font-mono text-xs"
               onClick={() => copyToClipboard(event.raw_record, 'raw')}
-              style={{ padding: '1px 5px', fontSize: '0.68rem' }}
+              style={{ padding: '1px 5px', fontSize: '0.68rem', border: '1px solid var(--border-subtle)' }}
             >
-              {copiedKey === 'raw' ? <Check size={11} color="#34d399" /> : <Copy size={11} />}
+              {copiedKey === 'raw' ? <Check size={11} color="#059669" /> : <Copy size={11} />}
               <span>Copy Log</span>
             </button>
           </div>
@@ -172,7 +194,7 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
             <div style={{ fontWeight: 600, fontSize: '0.74rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '4px' }}>
               Normalized Attribute Map
             </div>
-            <div className="ops-panel-subtle" style={{ padding: '6px 10px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <div className="ops-panel-subtle" style={{ padding: '6px 10px', display: 'flex', flexDirection: 'column', gap: '2px', background: '#ffffff' }}>
               {Object.entries(event.attributes).map(([key, val]) => (
                 <div key={key} style={{ display: 'flex', justifyContent: 'space-between', padding: '2px 0', borderBottom: '1px solid var(--border-subtle)' }}>
                   <span className="font-mono text-xs text-muted">{key}:</span>
@@ -187,9 +209,18 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
 
         {/* Correlated Event Relationships */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 600, fontSize: '0.74rem', textTransform: 'uppercase', color: '#c084fc', marginBottom: '6px' }}>
-            <Link2 size={13} />
-            <span>Correlated Causal Relationships ({relationships.length})</span>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              marginBottom: '6px',
+            }}
+          >
+            <Link2 size={13} color="var(--node-b-color)" />
+            <span className="section-label" style={{ color: 'var(--node-b-color)' }}>
+              Causal Relationships ({relationships.length})
+            </span>
           </div>
 
           {relationships.length === 0 ? (
@@ -207,7 +238,7 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
                   <div
                     key={rel.relationship_id}
                     className="ops-panel-subtle"
-                    style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: '4px' }}
+                    style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: '4px', background: '#ffffff' }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -220,7 +251,7 @@ export const EvidenceInspector: React.FC<EvidenceInspectorProps> = ({
                       <button
                         onClick={() => onSelectEventId?.(otherId)}
                         className="btn-ops btn-ops-ghost font-mono text-xs"
-                        style={{ padding: '1px 6px', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.25)' }}
+                        style={{ padding: '1px 6px', color: '#0284c7', border: '1px solid #bae6fd', background: '#eff6ff' }}
                         title={`Navigate to event ${otherId}`}
                       >
                         {otherId} <ArrowRight size={10} />

@@ -62,7 +62,6 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
       if (existing && existing.x !== undefined && existing.y !== undefined) {
         return { ...n, x: existing.x, y: existing.y, vx: 0, vy: 0 };
       }
-      // Layout in clusters around node origin
       const angle = (i / rawNodes.length) * 2 * Math.PI;
       const radius = 140 + (i % 3) * 50;
       return {
@@ -91,9 +90,8 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
       const nodes = simulationNodesRef.current;
       const nodeMap = new Map(nodes.map((n) => [n.id, n]));
 
-      // Force layout physics step
+      // Physics layout
       if (iterations < maxIterations) {
-        // Node-node repulsion
         for (let i = 0; i < nodes.length; i++) {
           for (let j = i + 1; j < nodes.length; j++) {
             const na = nodes[i];
@@ -113,7 +111,6 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
           }
         }
 
-        // Link spring attraction
         rawLinks.forEach((link) => {
           const sId = typeof link.source === 'string' ? link.source : link.source.id;
           const tId = typeof link.target === 'string' ? link.target : link.target.id;
@@ -134,7 +131,6 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
           }
         });
 
-        // Center gravity & velocity dampening
         nodes.forEach((n) => {
           const dx = width / 2 - (n.x || 0);
           const dy = height / 2 - (n.y || 0);
@@ -147,11 +143,19 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
         iterations++;
       }
 
-      // Draw frame
+      // Draw canvas
       ctx.clearRect(0, 0, width, height);
       ctx.save();
       ctx.translate(offset.x, offset.y);
       ctx.scale(zoom, zoom);
+
+      // Draw grid background subtle dots
+      ctx.fillStyle = '#f1f5f9';
+      for (let x = -200; x < width + 200; x += 30) {
+        for (let y = -200; y < height + 200; y += 30) {
+          ctx.fillRect(x, y, 1.5, 1.5);
+        }
+      }
 
       // 1. Draw Links
       rawLinks.forEach((link) => {
@@ -170,20 +174,20 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
         ctx.lineTo(nb.x, nb.y!);
 
         if (link.type === 'CMD_ACK') {
-          ctx.strokeStyle = isConnected ? '#38bdf8' : 'rgba(56, 189, 248, 0.4)';
+          ctx.strokeStyle = isConnected ? '#0284c7' : 'rgba(2, 132, 199, 0.4)';
           ctx.setLineDash([4, 3]);
         } else if (link.type === 'SHARED_PLAN_ID') {
-          ctx.strokeStyle = isConnected ? '#c084fc' : 'rgba(192, 132, 252, 0.4)';
+          ctx.strokeStyle = isConnected ? '#7c3aed' : 'rgba(124, 58, 237, 0.4)';
           ctx.setLineDash([]);
         } else if (link.type.includes('FAULT') || link.type.includes('CASCADE')) {
-          ctx.strokeStyle = isConnected ? '#f87171' : 'rgba(239, 68, 68, 0.5)';
+          ctx.strokeStyle = isConnected ? '#dc2626' : 'rgba(220, 38, 38, 0.5)';
           ctx.setLineDash([]);
         } else {
-          ctx.strokeStyle = isConnected ? '#cbd5e1' : 'rgba(100, 116, 139, 0.25)';
+          ctx.strokeStyle = isConnected ? '#334155' : 'rgba(148, 163, 184, 0.4)';
           ctx.setLineDash([]);
         }
 
-        ctx.lineWidth = isConnected ? 2 : link.strength === 'STRONG' ? 1.5 : 1;
+        ctx.lineWidth = isConnected ? 2.5 : link.strength === 'STRONG' ? 1.5 : 1;
         ctx.stroke();
         ctx.setLineDash([]);
       });
@@ -197,44 +201,44 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
         if (isSelected) {
           ctx.beginPath();
           ctx.arc(n.x, n.y, 11, 0, 2 * Math.PI);
-          ctx.strokeStyle = '#38bdf8';
-          ctx.lineWidth = 2;
+          ctx.strokeStyle = '#0284c7';
+          ctx.lineWidth = 2.5;
           ctx.stroke();
 
           ctx.beginPath();
-          ctx.arc(n.x, n.y, 14, 0, 2 * Math.PI);
-          ctx.strokeStyle = 'rgba(56, 189, 248, 0.3)';
-          ctx.lineWidth = 1;
+          ctx.arc(n.x, n.y, 15, 0, 2 * Math.PI);
+          ctx.strokeStyle = 'rgba(2, 132, 199, 0.25)';
+          ctx.lineWidth = 1.5;
           ctx.stroke();
         }
 
         // Main Node Circle
         ctx.beginPath();
-        ctx.arc(n.x, n.y, isSelected ? 6 : 4.5, 0, 2 * Math.PI);
+        ctx.arc(n.x, n.y, isSelected ? 6.5 : 5, 0, 2 * Math.PI);
 
         // Fill by node or category
         if (n.category === 'FAULT' || n.severity === 'CRITICAL' || n.severity === 'ERROR') {
-          ctx.fillStyle = '#f87171';
+          ctx.fillStyle = '#dc2626';
         } else if (n.category === 'RECOVERY') {
-          ctx.fillStyle = '#34d399';
+          ctx.fillStyle = '#059669';
         } else if (n.node === 'NODE_A') {
-          ctx.fillStyle = '#38bdf8';
+          ctx.fillStyle = '#0284c7';
         } else if (n.node === 'NODE_B') {
-          ctx.fillStyle = '#c084fc';
+          ctx.fillStyle = '#7c3aed';
         } else {
-          ctx.fillStyle = '#34d399';
+          ctx.fillStyle = '#059669';
         }
 
         ctx.fill();
-        ctx.strokeStyle = '#090d16';
+        ctx.strokeStyle = '#ffffff';
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
         // Node Label
         if (zoom >= 0.85 || isSelected) {
-          ctx.fillStyle = isSelected ? '#38bdf8' : '#94a3b8';
-          ctx.font = '10px JetBrains Mono, monospace';
-          ctx.fillText(n.event_type, n.x + 8, n.y + 3);
+          ctx.fillStyle = isSelected ? '#0284c7' : '#334155';
+          ctx.font = isSelected ? 'bold 10px JetBrains Mono, monospace' : '10px JetBrains Mono, monospace';
+          ctx.fillText(n.event_type, n.x + 9, n.y + 3);
         }
       });
 
@@ -293,8 +297,8 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
       {/* Graph Toolbar */}
       <div className="ops-panel-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Network size={15} color="#c084fc" />
-          <span style={{ fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <Network size={15} color="#0284c7" />
+          <span style={{ fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-primary)' }}>
             Cross-Node Correlation Topology ({rawNodes.length} Nodes • {rawLinks.length} Edges)
           </span>
         </div>
@@ -345,7 +349,7 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
       </div>
 
       {/* Canvas container */}
-      <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: '#060a14' }}>
+      <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: '#f8fafc' }}>
         <canvas
           ref={canvasRef}
           width={900}
@@ -369,21 +373,23 @@ export const CorrelationGraph: React.FC<CorrelationGraphProps> = ({
             display: 'flex',
             flexDirection: 'column',
             gap: '3px',
-            background: 'rgba(15, 23, 42, 0.9)',
+            background: 'rgba(255, 255, 255, 0.95)',
+            border: '1px solid var(--border-default)',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#38bdf8' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#0284c7' }} />
             <span className="font-mono text-muted">NODE_A</span>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#c084fc', marginLeft: '4px' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#7c3aed', marginLeft: '4px' }} />
             <span className="font-mono text-muted">NODE_B</span>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#34d399', marginLeft: '4px' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669', marginLeft: '4px' }} />
             <span className="font-mono text-muted">NODE_C</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f87171' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#dc2626' }} />
             <span className="font-mono text-muted">Fault / Cascade</span>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#34d399', marginLeft: '4px' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669', marginLeft: '4px' }} />
             <span className="font-mono text-muted">Recovery</span>
           </div>
         </div>

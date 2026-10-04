@@ -1,150 +1,170 @@
 import React from 'react';
-import { Shield, Cpu, Network, Terminal, AlertOctagon, RefreshCw, Activity, Server } from 'lucide-react';
-import { SystemStats } from '../../types';
+import { Activity, RefreshCw, ChevronDown } from 'lucide-react';
+import { DatasetInfo, SystemStats } from '../../types';
 
 interface NavbarProps {
   onRunPipeline: () => void;
   isLoading: boolean;
-  activeView: string;
-  setActiveView: (view: string) => void;
+  datasets: DatasetInfo[];
+  selectedDataset: string;
+  onSelectDataset: (datasetId: string) => void;
   stats?: SystemStats | null;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   onRunPipeline,
   isLoading,
-  activeView,
-  setActiveView,
+  datasets,
+  selectedDataset,
+  onSelectDataset,
   stats,
 }) => {
-  const totalEvents = stats?.events?.total_events;
-  const incidentCount = stats?.incidents?.total;
-
-  const navItems = [
-    { id: 'dashboard', label: 'Overview', icon: Shield, keynum: '1' },
-    { id: 'incidents', label: 'Incident Workbench', icon: Cpu, badge: incidentCount !== undefined ? `${incidentCount}` : undefined, keynum: '2' },
-    { id: 'graph', label: 'Correlation Graph', icon: Network, keynum: '3' },
-    { id: 'logs', label: 'Log Explorer', icon: Terminal, badge: totalEvents ? `${totalEvents}` : undefined, keynum: '4' },
-    { id: 'errors', label: 'Quarantine & Audit', icon: AlertOctagon, badge: stats?.events?.ingestion_errors ? `${stats.events.ingestion_errors}` : undefined, keynum: '5' },
-  ];
+  const totalEvents = stats?.events?.total_events || 0;
+  const incidentCount = stats?.incidents?.total || 0;
 
   return (
     <header
       style={{
         background: 'var(--bg-header)',
-        borderBottom: '1px solid var(--border-default)',
-        padding: '0 16px',
-        height: '46px',
+        borderBottom: '1px solid var(--border-subtle)',
+        padding: '0 20px',
+        height: 'var(--navbar-height)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexShrink: 0,
         zIndex: 40,
+        position: 'sticky',
+        top: 0,
+        boxShadow: 'var(--shadow-xs)',
       }}
     >
-      {/* Brand & System Indicators */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      {/* ── Brand ─────────────────────────────────── */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {/* Monogram mark */}
           <div
             style={{
-              width: '24px',
-              height: '24px',
-              borderRadius: 'var(--radius-xs)',
-              background: '#0284c7',
+              width: '30px',
+              height: '30px',
+              borderRadius: 'var(--radius-sm)',
+              background: 'var(--text-accent)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: '#ffffff',
+              flexShrink: 0,
             }}
           >
-            <Activity size={14} strokeWidth={2.5} />
+            <Activity size={16} strokeWidth={2.2} />
           </div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
-            <span style={{ fontWeight: 800, fontSize: '0.88rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-              PS3<span style={{ color: '#38bdf8' }}>::OPS</span>
-            </span>
-            <span className="text-xs" style={{ color: 'var(--text-dim)', fontWeight: 500 }}>
-              v1.0
-            </span>
-          </div>
-        </div>
 
-        {/* Nodes Health Bar */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            paddingLeft: '12px',
-            borderLeft: '1px solid var(--border-subtle)',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
-            <span className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
-              NODE_A • NODE_B • NODE_C
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation Segmented Tabs */}
-      <nav style={{ display: 'flex', alignItems: 'center', gap: '2px', background: 'var(--bg-canvas)', padding: '2px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeView === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => setActiveView(item.id)}
+          <div style={{ lineHeight: 1 }}>
+            <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '4px 10px',
-                borderRadius: 'var(--radius-xs)',
-                border: 'none',
-                background: isActive ? 'var(--bg-surface-elevated)' : 'transparent',
-                color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
-                fontWeight: isActive ? 600 : 500,
-                fontSize: '0.78rem',
-                cursor: 'pointer',
-                transition: 'all 0.1s ease',
-                boxShadow: isActive ? '0 1px 2px rgba(0,0,0,0.3)' : 'none',
+                fontWeight: 800,
+                fontSize: '0.92rem',
+                letterSpacing: '-0.025em',
+                color: 'var(--text-primary)',
               }}
             >
-              <Icon size={13} color={isActive ? '#38bdf8' : 'currentColor'} />
-              <span>{item.label}</span>
-              {item.badge && (
+              PS3{' '}
+              <span style={{ color: 'var(--text-accent)', fontWeight: 700 }}>
+                Observability
+              </span>
+            </div>
+            <div
+              style={{
+                fontSize: '0.64rem',
+                color: 'var(--text-dim)',
+                fontWeight: 500,
+                marginTop: '1px',
+                letterSpacing: '0.01em',
+              }}
+            >
+              Multi-System Log Analysis & Incident Reconstruction
+            </div>
+          </div>
+        </div>
+
+        {/* Live telemetry pill */}
+        {totalEvents > 0 && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '3px 10px',
+              borderRadius: '99px',
+              border: '1px solid var(--border-subtle)',
+              background: 'var(--bg-surface-elevated)',
+              marginLeft: '4px',
+            }}
+          >
+            <span className="status-dot online" />
+            <span
+              className="font-mono"
+              style={{ fontSize: '0.67rem', color: 'var(--text-muted)', fontWeight: 600 }}
+            >
+              {totalEvents.toLocaleString()} records
+            </span>
+            {incidentCount > 0 && (
+              <>
+                <span style={{ color: 'var(--border-default)', fontSize: '0.7rem' }}>·</span>
                 <span
                   className="font-mono"
-                  style={{
-                    fontSize: '0.68rem',
-                    padding: '1px 5px',
-                    borderRadius: 'var(--radius-xs)',
-                    background: isActive ? 'rgba(56, 189, 248, 0.18)' : 'rgba(148, 163, 184, 0.1)',
-                    color: isActive ? '#38bdf8' : 'var(--text-dim)',
-                  }}
+                  style={{ fontSize: '0.67rem', color: 'var(--status-critical)', fontWeight: 700 }}
                 >
-                  {item.badge}
+                  {incidentCount} incidents
                 </span>
-              )}
-            </button>
-          );
-        })}
-      </nav>
+              </>
+            )}
+          </div>
+        )}
+      </div>
 
-      {/* Action Area */}
+      {/* ── Right Controls ───────────────────────── */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {/* Dataset selector */}
+        {datasets.length > 0 && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+            <span
+              className="section-label"
+              style={{ fontSize: '0.65rem' }}
+            >
+              Dataset
+            </span>
+            <select
+              value={selectedDataset}
+              onChange={(e) => onSelectDataset(e.target.value)}
+              className="ops-select font-mono"
+              style={{
+                fontSize: '0.74rem',
+                minWidth: '200px',
+                fontWeight: 600,
+                maxWidth: '300px',
+              }}
+              disabled={isLoading}
+            >
+              {datasets.map((d) => (
+                <option key={d.id} value={d.path}>
+                  {d.name} ({d.file_count} logs)
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        {/* Pipeline trigger */}
         <button
-          className="btn-ops btn-ops-secondary"
+          className="btn-ops btn-ops-primary"
           onClick={onRunPipeline}
           disabled={isLoading}
-          style={{ fontSize: '0.75rem', padding: '4px 9px' }}
-          title="Re-run full ingestion and deterministic correlation pipeline"
+          style={{ padding: '5px 14px', fontSize: '0.76rem' }}
+          title="Re-run full ingestion and deterministic correlation pipeline on active dataset"
         >
-          <RefreshCw size={12} className={isLoading ? 'animate-spin' : ''} />
-          <span>{isLoading ? 'Ingesting...' : 'Ingest & Correlate'}</span>
+          <RefreshCw size={13} className={isLoading ? 'animate-spin' : ''} />
+          <span>{isLoading ? 'Processing…' : 'Run Pipeline'}</span>
         </button>
       </div>
     </header>

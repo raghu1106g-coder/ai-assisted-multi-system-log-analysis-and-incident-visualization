@@ -128,3 +128,14 @@ export interface SystemStats {
     total: number;
   };
 }
+
+export interface DatasetInfo {
+  id: string;
+  name: string;
+  path: string;
+  exists: boolean;
+  files: string[];
+  nodes: string[];
+  log_families: string[];
+  file_count: number;
+}

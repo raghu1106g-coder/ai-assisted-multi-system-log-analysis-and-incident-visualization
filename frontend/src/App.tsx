@@ -1,18 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/layout/Navbar';
+import { Sidebar } from './components/layout/Sidebar';
 import { Dashboard } from './pages/Dashboard';
+import { ImportDatasetPage } from './pages/ImportDatasetPage';
 import { IncidentsPage } from './pages/IncidentsPage';
+import { TimelinePage } from './pages/TimelinePage';
+import { OperationContextPage } from './pages/OperationContextPage';
 import { LogExplorer } from './pages/LogExplorer';
 import { CorrelationView } from './pages/CorrelationView';
-import { ErrorsPage } from './pages/ErrorsPage';
+import { SystemStatusPage } from './pages/SystemStatusPage';
 import { api, EventFilterParams } from './services/api';
-import { NormalizedEvent, Incident, IngestionError, EventRelationship, Evidence, SystemStats } from './types';
-import { AlertTriangle, RefreshCw, Loader2 } from 'lucide-react';
+import {
+  NormalizedEvent,
+  Incident,
+  IngestionError,
+  EventRelationship,
+  Evidence,
+  SystemStats,
+  DatasetInfo,
+} from './types';
+import { AlertTriangle, Loader2 } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [activeView, setActiveView] = useState<string>('dashboard');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Available datasets & active selection
+  const [datasets, setDatasets] = useState<DatasetInfo[]>([]);
+  const [selectedDatasetPath, setSelectedDatasetPath] = useState<string>('');
 
   // Core state
   const [stats, setStats] = useState<SystemStats | null>(null);
@@ -22,7 +38,7 @@ export const App: React.FC = () => {
   const [relationships, setRelationships] = useState<EventRelationship[]>([]);
   const [graphData, setGraphData] = useState<any>(null);
 
-  // Active selection
+  // Active investigation selection
   const [selectedIncident, setSelectedIncident] = useState<Incident | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<NormalizedEvent | null>(null);
   const [selectedEvidence, setSelectedEvidence] = useState<Evidence[]>([]);
@@ -30,30 +46,48 @@ export const App: React.FC = () => {
   // Explorer filters
   const [filters, setFilters] = useState<EventFilterParams>({ limit: 500 });
 
-  const loadAllData = async () => {
+  // Initial load: fetch dataset list & existing data
+  const loadAllData = async (targetPath?: string) => {
     setIsLoading(true);
     setError(null);
     try {
-      // 1. Load Stats
+      // 1. Load Datasets
+      const dsetsRes = await api.getDatasets().catch(() => ({ datasets: [] }));
+      setDatasets(dsetsRes.datasets);
+
+      const activePath =
+        targetPath ||
+        selectedDatasetPath ||
+        (dsetsRes.datasets.length > 0 ? dsetsRes.datasets[0].path : '');
+      if (activePath && activePath !== selectedDatasetPath) {
+        setSelectedDatasetPath(activePath);
+      }
+
+      // 2. Load Stats
       const statsRes = await api.getStats().catch(() => null);
       setStats(statsRes);
 
-      // 2. Load Incidents
+      // 3. Load Incidents
       const incRes = await api.getIncidents();
       setIncidents(incRes.incidents);
-      if (incRes.incidents.length > 0 && !selectedIncident) {
-        setSelectedIncident(incRes.incidents[0]);
+      if (incRes.incidents.length > 0) {
+        setSelectedIncident((prev) => {
+          if (prev && incRes.incidents.some((i) => i.incident_id === prev.incident_id)) {
+            return incRes.incidents.find((i) => i.incident_id === prev.incident_id) || incRes.incidents[0];
+          }
+          return incRes.incidents[0];
+        });
       }
 
-      // 3. Load Events
+      // 4. Load Events
       const evRes = await api.getEvents(filters);
       setEvents(evRes.events);
 
-      // 4. Load Errors
+      // 5. Load Errors
       const errRes = await api.getIngestionErrors();
       setErrors(errRes.errors);
 
-      // 5. Load Relationships & Graph
+      // 6. Load Relationships & Graph
       const relRes = await api.getRelationships();
       setRelationships(relRes.relationships);
 
@@ -70,16 +104,22 @@ export const App: React.FC = () => {
     loadAllData();
   }, []);
 
-  const handleRunPipeline = async () => {
+  const handleRunPipeline = async (path?: string) => {
     setIsLoading(true);
     setError(null);
+    const targetPath = path || selectedDatasetPath;
     try {
-      await api.runPipeline(true, 10.0);
-      await loadAllData();
+      await api.runPipeline(targetPath, true, 10.0);
+      await loadAllData(targetPath);
     } catch (err: any) {
       setError(err.message || 'Pipeline execution failed');
       setIsLoading(false);
     }
+  };
+
+  const handleSelectDataset = async (datasetPath: string) => {
+    setSelectedDatasetPath(datasetPath);
+    await handleRunPipeline(datasetPath);
   };
 
   const handleSelectEvent = async (event: NormalizedEvent) => {
@@ -113,13 +153,14 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-canvas)' }}>
-      {/* Top Navigation Bar */}
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-canvas)', overflow: 'hidden' }}>
+      {/* Top Header Bar */}
       <Navbar
-        onRunPipeline={handleRunPipeline}
+        onRunPipeline={() => handleRunPipeline()}
         isLoading={isLoading}
-        activeView={activeView}
-        setActiveView={setActiveView}
+        datasets={datasets}
+        selectedDataset={selectedDatasetPath}
+        onSelectDataset={handleSelectDataset}
         stats={stats}
       />
 
@@ -127,85 +168,138 @@ export const App: React.FC = () => {
       {error && (
         <div
           style={{
-            margin: '12px 16px 0 16px',
-            padding: '10px 16px',
-            borderRadius: 'var(--radius-sm)',
+            margin: '0 18px',
+            padding: '7px 14px',
             background: 'var(--status-critical-bg)',
             border: '1px solid var(--status-critical-border)',
+            borderTop: 'none',
             color: 'var(--status-critical)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            fontSize: '0.8rem',
+            fontSize: '0.78rem',
+            borderRadius: '0 0 var(--radius-sm) var(--radius-sm)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <AlertTriangle size={15} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+            <AlertTriangle size={14} />
             <span>{error}</span>
           </div>
-          <button className="btn-ops btn-ops-secondary" onClick={loadAllData} style={{ padding: '2px 8px', fontSize: '0.72rem' }}>
+          <button className="btn-ops btn-ops-secondary" onClick={() => loadAllData()} style={{ padding: '2px 8px', fontSize: '0.72rem' }}>
             Retry
           </button>
         </div>
       )}
 
-      {/* View Router */}
-      <main style={{ flex: 1, minHeight: 0 }}>
-        {activeView === 'dashboard' && (
-          <Dashboard
-            stats={stats}
-            incidents={incidents}
-            onSelectIncident={(id) => {
-              const inc = incidents.find((i) => i.incident_id === id);
-              if (inc) setSelectedIncident(inc);
-              setActiveView('incidents');
-            }}
-            onNavigate={setActiveView}
-          />
-        )}
+      {/* Main Workspace Layout (Sidebar + Fluid Content) */}
+      <div style={{ display: 'flex', flex: 1, minHeight: 0, overflow: 'hidden' }}>
+        <Sidebar
+          activeView={activeView}
+          setActiveView={setActiveView}
+          stats={stats}
+        />
 
-        {activeView === 'incidents' && (
-          <IncidentsPage
-            incidents={incidents}
-            selectedIncident={selectedIncident}
-            onSelectIncident={setSelectedIncident}
-            events={events}
-            relationships={relationships}
-            selectedEvent={selectedEvent}
-            selectedEvidence={selectedEvidence}
-            onSelectEvent={handleSelectEvent}
-            onSelectEventById={handleSelectEventById}
-          />
-        )}
+        <main style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          {activeView === 'dashboard' && (
+            <Dashboard
+              stats={stats}
+              incidents={incidents}
+              events={events}
+              onSelectIncident={(id) => {
+                const inc = incidents.find((i) => i.incident_id === id);
+                if (inc) setSelectedIncident(inc);
+                setActiveView('incidents');
+              }}
+              onNavigate={setActiveView}
+            />
+          )}
 
-        {activeView === 'graph' && (
-          <CorrelationView
-            graphData={graphData}
-            relationships={relationships}
-            events={events}
-            selectedEvent={selectedEvent}
-            selectedEvidence={selectedEvidence}
-            onSelectEvent={handleSelectEvent}
-            onSelectEventById={handleSelectEventById}
-          />
-        )}
+          {activeView === 'import' && (
+            <ImportDatasetPage
+              datasets={datasets}
+              selectedDatasetPath={selectedDatasetPath}
+              onSelectDatasetPath={setSelectedDatasetPath}
+              onRunPipeline={handleRunPipeline}
+              isLoading={isLoading}
+              errors={errors}
+              stats={stats}
+              onNavigateToIncidents={() => setActiveView('incidents')}
+            />
+          )}
 
-        {activeView === 'logs' && (
-          <LogExplorer
-            events={events}
-            filters={filters}
-            onFilterChange={handleFilterChange}
-            onResetFilters={() => handleFilterChange({ limit: 500 })}
-            selectedEvent={selectedEvent}
-            selectedEvidence={selectedEvidence}
-            relationships={relationships}
-            onSelectEvent={handleSelectEvent}
-            onSelectEventById={handleSelectEventById}
-          />
-        )}
+          {activeView === 'incidents' && (
+            <IncidentsPage
+              incidents={incidents}
+              selectedIncident={selectedIncident}
+              onSelectIncident={setSelectedIncident}
+              events={events}
+              relationships={relationships}
+              selectedEvent={selectedEvent}
+              selectedEvidence={selectedEvidence}
+              onSelectEvent={handleSelectEvent}
+              onSelectEventById={handleSelectEventById}
+            />
+          )}
 
-        {activeView === 'errors' && <ErrorsPage errors={errors} />}
-      </main>
+          {activeView === 'timeline' && (
+            <TimelinePage
+              events={events}
+              relationships={relationships}
+              selectedEvent={selectedEvent}
+              selectedEvidence={selectedEvidence}
+              onSelectEvent={handleSelectEvent}
+              onSelectEventById={handleSelectEventById}
+            />
+          )}
+
+          {activeView === 'graph' && (
+            <CorrelationView
+              graphData={graphData}
+              relationships={relationships}
+              events={events}
+              selectedEvent={selectedEvent}
+              selectedEvidence={selectedEvidence}
+              onSelectEvent={handleSelectEvent}
+              onSelectEventById={handleSelectEventById}
+            />
+          )}
+
+          {activeView === 'context' && (
+            <OperationContextPage
+              events={events}
+              incidents={incidents}
+              relationships={relationships}
+              selectedEvent={selectedEvent}
+              selectedEvidence={selectedEvidence}
+              onSelectEvent={handleSelectEvent}
+              onSelectEventById={handleSelectEventById}
+            />
+          )}
+
+          {activeView === 'evidence' && (
+            <LogExplorer
+              events={events}
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              onResetFilters={() => handleFilterChange({ limit: 500 })}
+              selectedEvent={selectedEvent}
+              selectedEvidence={selectedEvidence}
+              relationships={relationships}
+              onSelectEvent={handleSelectEvent}
+              onSelectEventById={handleSelectEventById}
+            />
+          )}
+
+          {activeView === 'status' && (
+            <SystemStatusPage
+              stats={stats}
+              errors={errors}
+              datasets={datasets}
+              activeDatasetPath={selectedDatasetPath}
+            />
+          )}
+        </main>
+      </div>
     </div>
   );
 };

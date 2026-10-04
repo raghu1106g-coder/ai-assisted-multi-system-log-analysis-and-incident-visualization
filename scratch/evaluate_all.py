@@ -18,7 +18,7 @@ from backend.app.correlation.engine import CorrelationEngine
 from backend.app.incidents.reconstructor import IncidentReconstructor
 from backend.app.ingestion.engine import run_ingestion
 from backend.app.models.event import NormalizedEvent
-from backend.app.models.incident import Incident, IncidentKind
+from backend.app.models.incident import EventRelationship, Incident, IncidentKind
 
 def run_pipeline(data_root: str):
     res, events = run_ingestion(Path(data_root))
@@ -56,9 +56,9 @@ def main():
     
     # Build event-id set mapping for detected incidents
     # Note: incident.evidence.event_ids gives the event ids included in the incident
-    det_map = {}
+    det_map: dict[str, dict[str, Any]] = {}
     for inc in detected_incidents:
-        ev_ids = set(inc.event_ids)
+        ev_ids: set[str] = set(inc.event_ids)
         det_map[inc.incident_id] = {
             "inc": inc,
             "event_ids": ev_ids,
@@ -79,7 +79,7 @@ def main():
     
     # Explicit Matching Table
     # For each GT incident, calculate event overlap with all detected incidents
-    matching_table = []
+    matching_table: list[dict[str, Any]] = []
     matched_det_ids = set()
     
     for gt in gt_incidents:
@@ -88,7 +88,7 @@ def main():
         gt_faults = gt.get("primary_faults", [])
         gt_nodes = gt.get("involved_nodes", [])
         gt_ev_raw = gt.get("relevant_event_ids", [])
-        gt_ev_ids = set(e["event_id"] if isinstance(e, dict) else e for e in gt_ev_raw)
+        gt_ev_ids: set[str] = set(e["event_id"] if isinstance(e, dict) else str(e) for e in gt_ev_raw)
         
         best_match_id = None
         best_jaccard = 0.0
@@ -97,17 +97,19 @@ def main():
         best_recall = 0.0
         
         for det_id, dinfo in det_map.items():
-            intersection = gt_ev_ids.intersection(dinfo["event_ids"])
+            d_ev_ids: set[str] = dinfo["event_ids"]
+            intersection = gt_ev_ids.intersection(d_ev_ids)
             if len(intersection) > 0:
-                jaccard = len(intersection) / len(gt_ev_ids.union(dinfo["event_ids"]))
+                jaccard = len(intersection) / len(gt_ev_ids.union(d_ev_ids))
                 rec = len(intersection) / len(gt_ev_ids)
-                prec = len(intersection) / len(dinfo["event_ids"])
+                prec = len(intersection) / len(d_ev_ids)
                 if jaccard > best_jaccard or (jaccard == best_jaccard and len(intersection) > best_overlap_count):
                     best_jaccard = jaccard
                     best_match_id = det_id
                     best_overlap_count = len(intersection)
                     best_precision = prec
                     best_recall = rec
+
                     
         match_quality = "NONE"
         notes = ""
@@ -147,7 +149,7 @@ def main():
 
     # Evaluate TP, FP, FN
     # A GT incident is a True Positive (TP) if a detected incident recovered significant core evidence (e.g. recall > 0.3 or Jaccard > 0.2)
-    tp_incidents = [r for r in matching_table if r["detected_match"] != "NO MATCH" and r["recall"] >= 0.3]
+    tp_incidents = [r for r in matching_table if r["detected_match"] != "NO MATCH" and float(r["recall"]) >= 0.3]
     fn_incidents = [r for r in matching_table if r not in tp_incidents]
     # Unmatched detected fault incidents:
     unmatched_detected_faults = [
@@ -193,7 +195,7 @@ def main():
     print(f"Total Generated relationships: {len(rels)}")
     
     # Map generated relationships by (source, target)
-    gen_rel_map = {}
+    gen_rel_map: dict[tuple[str, str], EventRelationship] = {}
     for r in rels:
         key = (r.source_event_id, r.target_event_id)
         gen_rel_map[key] = r
@@ -215,7 +217,7 @@ def main():
     # Section 6: Forbidden Relationships
     forbidden_rels = gt_by_class.get("SHOULD_NOT_BE_CORRELATED", [])
     print(f"\nEvaluating {len(forbidden_rels)} FORBIDDEN (SHOULD_NOT_BE_CORRELATED) relationships...")
-    forbidden_fp = []
+    forbidden_fp: list[tuple[dict[str, Any], EventRelationship]] = []
     forbidden_correct = []
     
     # Also check the specific 6 previous false positives:
@@ -233,7 +235,8 @@ def main():
         t = r["target_event_id"]
         if (s, t) in gen_rel_map or (t, s) in gen_rel_map:
             actual = gen_rel_map.get((s, t)) or gen_rel_map.get((t, s))
-            forbidden_fp.append((r, actual))
+            if actual is not None:
+                forbidden_fp.append((r, actual))
         else:
             forbidden_correct.append(r)
             
@@ -316,7 +319,8 @@ def main():
     prox_edges = [r for r in rels if "15s proximity" in (r.reason or "").lower() or str(r.relationship_type) == "STATE_TO_FAULT"]
     print(f"Total temporal proximity / STATE_TO_FAULT edges: {len(prox_edges)}")
     for pe in prox_edges[:10]:
-        print(f"  {pe.source_event_id} -> {pe.target_event_id} | Type: {pe.relationship_type} | Strength: {pe.strength} | Uncertainty: {pe.uncertainty} | Reason: {pe.reason}")
+        print(f"  {pe.source_event_id} -> {pe.target_event_id} | Type: {pe.relationship_type} | Strength: {pe.strength} | Confidence: {pe.confidence} | Reason: {pe.reason}")
+
 
     print("\n" + "="*80)
     print("SECTION 9: MISSING-EVENT DETECTION")

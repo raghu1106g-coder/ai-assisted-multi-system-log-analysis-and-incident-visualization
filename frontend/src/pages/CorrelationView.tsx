@@ -43,8 +43,8 @@ export const CorrelationView: React.FC<CorrelationViewProps> = ({
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        padding: '12px 16px',
-        height: 'calc(100vh - 46px)',
+        padding: '14px 18px',
+        height: 'calc(100vh - var(--navbar-height))',
         overflow: 'hidden',
         background: 'var(--bg-canvas)',
       }}
@@ -63,7 +63,7 @@ export const CorrelationView: React.FC<CorrelationViewProps> = ({
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Network size={16} color="#c084fc" />
+            <Network size={16} color="#0284c7" />
             <h2 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               Deterministic Cross-Node Correlation & Causal Graph Engine
             </h2>
@@ -129,12 +129,12 @@ export const CorrelationView: React.FC<CorrelationViewProps> = ({
             <div className="ops-panel" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
               <div className="ops-panel-header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Link2 size={14} color="#38bdf8" />
-                  <span style={{ fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  <Link2 size={14} color="#0284c7" />
+                  <span style={{ fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-primary)' }}>
                     Discovered Relationships ({filteredRelationships.length})
                   </span>
                 </div>
-                <span className="text-xs text-dim">Click nodes or IDs to inspect</span>
+                <span className="text-xs text-muted">Click nodes or IDs to inspect</span>
               </div>
 
               <div style={{ flex: 1, overflowY: 'auto', padding: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -147,13 +147,13 @@ export const CorrelationView: React.FC<CorrelationViewProps> = ({
                     <div
                       key={rel.relationship_id}
                       className="ops-panel-subtle"
-                      style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: '4px' }}
+                      style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: '4px', background: '#ffffff' }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span className="ops-badge ops-badge-routine" style={{ fontSize: '0.68rem' }}>
                           {rel.relationship_type}
                         </span>
-                        <span className="font-mono text-xs" style={{ color: '#38bdf8' }}>
+                        <span className="font-mono text-xs" style={{ color: '#0284c7' }}>
                           Confidence: {(rel.confidence * 100).toFixed(0)}%
                         </span>
                       </div>
@@ -166,7 +166,7 @@ export const CorrelationView: React.FC<CorrelationViewProps> = ({
                         <button
                           onClick={() => onSelectEventById(rel.source_event_id)}
                           className="btn-ops btn-ops-ghost font-mono text-xs"
-                          style={{ padding: '2px 6px', fontSize: '0.7rem', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.25)' }}
+                          style={{ padding: '2px 6px', fontSize: '0.7rem', color: '#0284c7', border: '1px solid #bae6fd', background: '#eff6ff' }}
                           title={`Source Event: ${rel.source_event_id}`}
                         >
                           Src: {rel.source_event_id}
@@ -177,7 +177,7 @@ export const CorrelationView: React.FC<CorrelationViewProps> = ({
                         <button
                           onClick={() => onSelectEventById(rel.target_event_id)}
                           className="btn-ops btn-ops-ghost font-mono text-xs"
-                          style={{ padding: '2px 6px', fontSize: '0.7rem', color: '#c084fc', border: '1px solid rgba(192, 132, 252, 0.25)' }}
+                          style={{ padding: '2px 6px', fontSize: '0.7rem', color: '#7c3aed', border: '1px solid #ddd6fe', background: '#ede9fe' }}
                           title={`Target Event: ${rel.target_event_id}`}
                         >
                           Tgt: {rel.target_event_id}

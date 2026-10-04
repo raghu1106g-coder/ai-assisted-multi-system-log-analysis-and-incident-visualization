@@ -46,8 +46,8 @@ export const LogExplorer: React.FC<LogExplorerProps> = ({
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        padding: '12px 16px',
-        height: 'calc(100vh - 46px)',
+        padding: '14px 18px',
+        height: 'calc(100vh - var(--navbar-height))',
         overflow: 'hidden',
         background: 'var(--bg-canvas)',
       }}
@@ -89,14 +89,17 @@ export const LogExplorer: React.FC<LogExplorerProps> = ({
         {/* Table Panel */}
         <div className="ops-panel" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
           <div className="ops-panel-header">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Terminal size={14} color="#38bdf8" />
-              <span style={{ fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Normalized Telemetry Log Stream ({events.length})
+            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+              <Terminal size={13} color="var(--text-accent)" />
+              <span className="panel-title">
+                Evidence Log Stream
+              </span>
+              <span className="font-mono" style={{ fontSize: '0.62rem', padding: '1px 5px', borderRadius: 'var(--radius-xs)', background: 'var(--bg-surface-elevated)', color: 'var(--text-muted)', fontWeight: 700 }}>
+                {events.length}
               </span>
             </div>
-            <span className="text-xs text-dim">
-              Click any row to inspect Level 3/4 source coordinates
+            <span className="text-xs text-muted">
+              Click any row to inspect Level 4 physical source coordinates and raw byte stream
             </span>
           </div>
 
@@ -141,7 +144,7 @@ export const LogExplorer: React.FC<LogExplorerProps> = ({
                         <td>
                           <span className="ops-badge ops-badge-muted">{ev.log_family}</span>
                         </td>
-                        <td className="font-mono text-xs" style={{ fontWeight: 600, color: isFault ? '#f87171' : 'var(--text-primary)' }}>
+                        <td className="font-mono text-xs" style={{ fontWeight: 600, color: isFault ? '#dc2626' : 'var(--text-primary)' }}>
                           {ev.event_type}
                         </td>
                         <td style={{ maxWidth: '400px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -151,7 +154,7 @@ export const LogExplorer: React.FC<LogExplorerProps> = ({
                         </td>
                         <td className="font-mono text-xs text-dim" style={{ whiteSpace: 'nowrap' }}>
                           <span style={{ color: 'var(--text-muted)' }}>{ev.source_file.split('/').slice(-2).join('/')}:</span>
-                          <span style={{ color: '#38bdf8', fontWeight: 600 }}>L{ev.source_line}</span>
+                          <span style={{ color: '#0284c7', fontWeight: 600 }}>L{ev.source_line}</span>
                         </td>
                       </tr>
                     );

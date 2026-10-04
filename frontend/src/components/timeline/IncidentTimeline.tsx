@@ -67,26 +67,37 @@ export const IncidentTimeline: React.FC<IncidentTimelineProps> = ({
     <div className="ops-panel" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
       {/* Timeline Controls Header */}
       <div className="ops-panel-header">
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Clock size={14} color="#38bdf8" />
-            <span style={{ fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              Chronological Event Sequence ({filteredEvents.length})
-            </span>
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+          <Clock size={13} color="var(--text-accent)" />
+          <span className="panel-title">
+            Event Sequence
+          </span>
+          <span
+            className="font-mono"
+            style={{
+              fontSize: '0.62rem',
+              padding: '1px 5px',
+              borderRadius: 'var(--radius-xs)',
+              background: 'var(--bg-surface-elevated)',
+              color: 'var(--text-muted)',
+              fontWeight: 700,
+            }}
+          >
+            {filteredEvents.length}
+          </span>
         </div>
 
         {/* Filter Controls */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-            <Search size={12} style={{ position: 'absolute', left: '7px', color: 'var(--text-dim)' }} />
+            <Search size={11} style={{ position: 'absolute', left: '7px', color: 'var(--text-dim)', pointerEvents: 'none' }} />
             <input
               type="text"
-              placeholder="Search event..."
+              placeholder="Search events…"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="ops-input"
-              style={{ paddingLeft: '24px', fontSize: '0.74rem', width: '150px' }}
+              style={{ paddingLeft: '22px', fontSize: '0.72rem', width: '160px' }}
             />
           </div>
 
@@ -94,7 +105,7 @@ export const IncidentTimeline: React.FC<IncidentTimelineProps> = ({
             value={filterNode}
             onChange={(e) => setFilterNode(e.target.value)}
             className="ops-select"
-            style={{ fontSize: '0.74rem', padding: '3px 20px 3px 6px' }}
+            style={{ fontSize: '0.72rem' }}
           >
             <option value="ALL">All Nodes</option>
             <option value="NODE_A">NODE_A</option>
@@ -106,7 +117,7 @@ export const IncidentTimeline: React.FC<IncidentTimelineProps> = ({
             value={filterFamily}
             onChange={(e) => setFilterFamily(e.target.value)}
             className="ops-select"
-            style={{ fontSize: '0.74rem', padding: '3px 20px 3px 6px' }}
+            style={{ fontSize: '0.72rem' }}
           >
             <option value="ALL">All Families</option>
             <option value="fault_recovery">fault_recovery</option>
@@ -126,7 +137,7 @@ export const IncidentTimeline: React.FC<IncidentTimelineProps> = ({
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            {filteredEvents.map((ev, index) => {
+            {filteredEvents.map((ev) => {
               const isSelected = ev.event_id === selectedEventId;
               const formattedTime = new Date(ev.timestamp).toISOString().replace('T', ' ').slice(11, 23);
               const isFault = ev.category === 'FAULT' || ev.severity === 'CRITICAL' || ev.severity === 'ERROR';
@@ -135,29 +146,9 @@ export const IncidentTimeline: React.FC<IncidentTimelineProps> = ({
                 <div
                   key={ev.event_id}
                   onClick={() => onSelectEvent(ev)}
-                  style={{
-                    padding: '8px 10px',
-                    borderRadius: 'var(--radius-sm)',
-                    background: isSelected ? 'var(--bg-selected)' : 'var(--bg-surface-subtle)',
-                    border: isSelected ? '1px solid #38bdf8' : '1px solid var(--border-subtle)',
-                    borderLeft: isFault
-                      ? '3px solid #f87171'
-                      : isSelected
-                      ? '3px solid #38bdf8'
-                      : '3px solid var(--border-default)',
-                    cursor: 'pointer',
-                    transition: 'all 0.1s ease',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '4px',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isSelected) e.currentTarget.style.borderColor = 'var(--border-strong)';
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isSelected) e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                  }}
-                >
+                  className={`incident-card${isFault ? ' fault' : ''}${isSelected ? ' selected' : ''}`}
+                style={{ gap: '4px', display: 'flex', flexDirection: 'column' }}
+              >
                   {/* Top metadata line */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>

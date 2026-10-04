@@ -6,6 +6,7 @@ import {
   Evidence,
   AIIncidentNarrative,
   SystemStats,
+  DatasetInfo,
 } from '../types';
 
 const API_BASE = '/api/v1';
@@ -114,16 +115,38 @@ export const api = {
     return res.json();
   },
 
-  async runPipeline(resetFirst: boolean = true, temporalWindowSeconds: number = 10.0): Promise<any> {
+  async getDatasets(): Promise<{ datasets: DatasetInfo[] }> {
+    const res = await fetch(`${API_BASE}/pipeline/datasets`);
+    if (!res.ok) throw new Error(`Failed to fetch datasets: ${res.statusText}`);
+    return res.json();
+  },
+
+  async uploadDataset(formData: FormData): Promise<{ status: string; dataset: DatasetInfo; message: string }> {
+    const res = await fetch(`${API_BASE}/pipeline/upload`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || `Upload failed: ${res.statusText}`);
+    }
+    return res.json();
+  },
+
+  async runPipeline(dataRoot?: string, resetFirst: boolean = true, temporalWindowSeconds: number = 10.0): Promise<any> {
     const res = await fetch(`${API_BASE}/pipeline/run`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        data_root: dataRoot || undefined,
         reset_first: resetFirst,
         temporal_window_seconds: temporalWindowSeconds,
       }),
     });
-    if (!res.ok) throw new Error(`Pipeline run failed: ${res.statusText}`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || `Pipeline run failed: ${res.statusText}`);
+    }
     return res.json();
   },
 
